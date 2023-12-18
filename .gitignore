@@ -14,6 +14,7 @@ local.properties
 .loadpath
 .recommenders
 
+
 .classpath
 .project
 
@@ -84,7 +85,7 @@ local.properties
 .mtj.tmp/
 
 # Package Files #
-*.jar
+# *.jar
 *.war
 *.nar
 *.ear
