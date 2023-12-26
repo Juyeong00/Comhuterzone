@@ -24,17 +24,7 @@
 	</form>
 	
 	<script>
-	document.getElementById('susubmit').addEventListener('click', ()=> {
-		//아이디가 있는지 혹시 비어있는지!!!
-		let input_name = document.getElementById('id');
-		if(id.value.trim() == ''){
-			alert('아이디는 필수 입력입니다.');
-			id.focus();
-			return;
-		} if else (password.value.trim() == ''){
-				alert('비밀번호는 필수 입력입니다.');
-				password.focus();
-				return;
+	
 	</script>
 </body>
 </html>

@@ -24,7 +24,7 @@
 		if(signUpDTO != null) {
 			//로그인 성공
 			session.setAttribute("loggedInMember",signUpDTO);
-			session.setMaxInactiveInterval(60);
+			session.setMaxInactiveInterval(3600);
 			response.sendRedirect("main.jsp");
 		} else {
 			//로그인실패

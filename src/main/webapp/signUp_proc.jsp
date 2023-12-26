@@ -31,7 +31,7 @@
 		
 		int result = signupDAO.saveSignUpInfo(signUpDTO);
 		//int result = 0;
-		
+	
 		if(result > 0){
 	%>		
 		<script>
@@ -42,14 +42,12 @@
 		} else {
 	%>
 		<script>	
-			alert('가입 실패');
-			//location.href = 'addPerson.jsp'; //해당 경로로 이동
-			history.back(); //뒤로가기
+		alert('가입 실패');
+		//location.href = 'addPerson.jsp'; //해당 경로로 이동
+		history.back(); //뒤로가기
 		</script>
-		
-	<% 	
+	<%
 		}
 	%>
-
 </body>
 </html>

@@ -23,15 +23,13 @@
 		String address2 = request.getParameter("address2");
 		String birthday = request.getParameter("birthday");
 		String indate = request.getParameter("indate");
-		if( name == null ){
-			//이름이 안넘어왔는데??
-		}
+		
 		
 		ModifyMemberDAO modifyMemberDAO = new ModifyMemberDAO();
 		SignUpDTO signUpDTO = new SignUpDTO(id,password,name,email,phone,zipcode,address,address2,birthday,indate);
 		
 		int result = modifyMemberDAO.modifyMember(signUpDTO);
-		
+		session.setAttribute("loggedInMember", signUpDTO);
 		if(result > 0){
 	%>		
 		<script>
