@@ -8,14 +8,5 @@
 </head>
 <body>
 
-<script>
-   			alert('로그아웃 됬습니다.');
-   </script>
-   
-   <%
-	session.invalidate();
-   
-	response.sendRedirect("main.jsp");
-%>
 </body>
 </html>

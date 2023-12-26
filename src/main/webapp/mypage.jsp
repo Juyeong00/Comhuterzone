@@ -28,6 +28,7 @@
         <input type="hidden" id="input_indate" name="indate" value="<%= loggedInMember.getIndate() %>">
         <button id="modifyBtn" type="button">수정하기</button>
         <button id="logoutBtn" type="button">로그아웃</button>
+        <button id="deleteBtn" type="button">탈퇴하기</button>
        </form>
 <%
     } else {
@@ -50,19 +51,18 @@ document.getElementById('logoutBtn').addEventListener('click', ()=> {
 	}
 });
 document.getElementById('modifyBtn').addEventListener('click', ()=> {
-	//이름이 있는지 혹시 비어있는지!!!
-	/*
-	let input_name = document.getElementById('input_name');
-	if(input_name.value.trim() == ''){
-		alert('이름은 필수 입력입니다.');
-		input_name.focus();
-		return;
-	}
-	*/
 
 	if(confirm('수정 하시겠습니까?')){
 		let form = document.getElementById('myPageForm');
 		form.action = 'modifyMember.jsp';
+		form.submit();
+	}
+});
+document.getElementById('deleteBtn').addEventListener('click', ()=> {
+
+	if(confirm('탈퇴 하시겠습니까?')){
+		let form = document.getElementById('myPageForm');
+		form.action = 'deleteMember.jsp';
 		form.submit();
 	}
 });

@@ -13,7 +13,7 @@ import db.util.DBConnectionManager;
 			PreparedStatement psmt;
 			ResultSet rs;
 	//삭제
-		public int removePersonInfoById(int id) { 
+		public int deleteMemberInfoById(int id) { 
 			//해당 아이디에 맞는 사람의 정보를 삭제!!
 			
 			conn = DBConnectionManager.connectDB();
