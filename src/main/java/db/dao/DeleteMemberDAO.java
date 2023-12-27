@@ -13,7 +13,7 @@ import db.util.DBConnectionManager;
 			PreparedStatement psmt;
 			ResultSet rs;
 	//삭제
-		public int deleteMemberInfoById(int id) { 
+		public int deleteMemberInfoById(String id) { 
 			//해당 아이디에 맞는 사람의 정보를 삭제!!
 			
 			conn = DBConnectionManager.connectDB();
@@ -27,7 +27,7 @@ import db.util.DBConnectionManager;
 				psmt = conn.prepareStatement(sql);
 				//Connection 활용해서 sql 명령을 실행하는 객체
 				
-				psmt.setInt(1, id);
+				psmt.setString(1, id);
 		
 				result = psmt.executeUpdate();
 				//rs = psmt.executeQuery(); //준비된 sql 쿼리문 실행!
