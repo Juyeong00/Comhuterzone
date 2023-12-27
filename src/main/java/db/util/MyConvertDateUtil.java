@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 //날짜 변환하는 기능을 가진 클래스
 public class MyConvertDateUtil {
 
-	public static Timestamp conertLocalDateTimeToTimestamp(LocalDateTime ldt) {
+	public static Timestamp convertLocalDateTimeToTimestamp(LocalDateTime ldt) {
 		return Timestamp.valueOf(ldt);
 	}
 	
