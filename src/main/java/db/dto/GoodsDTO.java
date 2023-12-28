@@ -29,6 +29,14 @@ public class GoodsDTO {
 		this.content = content;
 	}
 
+	public GoodsDTO(int id, String name, int price, int quantity) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.quantity = quantity;
+	}
+
 	public void setContent(String content) {
 		this.content = content;
 	}

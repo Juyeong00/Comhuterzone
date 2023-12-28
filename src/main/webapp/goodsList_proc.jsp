@@ -23,15 +23,18 @@
 
 	GoodsDAO goodsDAO = new GoodsDAO();
 	GoodsDTO goods = goodsDAO.findDeskDetailById(intId);
+	GoodsDTO go = goodsDAO.findDeskDetailById2(intId);
 	%>
 
 	<%@ include file="navigation.jsp" %>
 	<h2><%=goods.getName() %></h2>
 	<p><%=goods.getContent() %></p>
 	<p><%=goods.getPrice() %>원</p>
+	<p><%=go.getQuantity() %>개 남음</p>
 	<form id="goodsForm" action="goodsList_proc.jsp" method="post">
 		<input type="hidden" name="id" value="<%=goods.getId() %>">
-		<input type="number" name="favnum" min="1" max="999" value="1">
+		<input type="hidden" id="pdCnt" name="count1" value="<%=go.getQuantity() %>">
+		<input type="number" id="inputCnt" name="count" min="1" max="999" value="1">
 		<button id="putBtn" type="button">장바구니</button>
 		<button id="buyBtn" type="button">구매하기</button>
 	</form>
@@ -40,8 +43,18 @@
 		document.getElementById('buyBtn').addEventListener('click', ()=>{
 			
 			let form = document.getElementById('goodsForm');
-			form.action='totalOrder1.jsp';
-			form.submit();
+			let pdCnt = document.getElementById('pdCnt');
+			let inputCnt = document.getElementById('inputCnt');
+			
+			if(pdCnt.value < inputCnt.value){
+				console.log(pdCnt.value)
+		  		alert('수량부족')
+		  		event.preventDefault();
+			} else{
+			
+				form.action='totalOrder1.jsp';
+				form.submit();
+			}
 		});
 		
 	</script>
