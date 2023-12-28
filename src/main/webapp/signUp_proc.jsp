@@ -12,7 +12,7 @@
 
 	<%
 		request.setCharacterEncoding("UTF-8"); //문자인코딩 설정
-	
+		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
@@ -23,6 +23,16 @@
 		String address2 = request.getParameter("address2");
 		String birthday = request.getParameter("birthday");
 		String indate = request.getParameter("indate");
+		System.out.println(id);
+		System.out.println(password);
+		System.out.println(name);
+		System.out.println(email);
+		System.out.println(phone);
+		System.out.println(zipcode);
+		System.out.println(address);
+		System.out.println(address2);
+		System.out.println(birthday);
+	
 		
 		SignUpDAO signupDAO = new SignUpDAO();
 		

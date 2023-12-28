@@ -14,7 +14,6 @@ public class LoginMemberDAO {
 	PreparedStatement psmt;
 	ResultSet rs;
 
-//	PersonInfoDTO findPersonInfoById 이름은 이렇게 구분하기 좋게
 	public SignUpDTO login(String memberId, String password) {
 		
 		conn = DBConnectionManager.connectDB();

@@ -23,12 +23,12 @@ public class SignUpDAO {
 		conn = DBConnectionManager.connectDB();
 		
 		String sql = " INSERT INTO member_table " 
-			       + " VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, TO_DATE(?, 'YYYY-MM-DD' )) ";
+			       + " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, TO_DATE(?, 'YYYY-MM-DD' )) ";
 		int result = 0;
 		
 		try {
 			psmt = conn.prepareStatement(sql);
-			//Connection 활용해서 sql 명령을 실행하는 객체
+			
 			
 			psmt.setString(1, signUpDTO.getId());
 			psmt.setString(2, signUpDTO.getPassword());
