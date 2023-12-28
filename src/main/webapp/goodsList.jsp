@@ -31,13 +31,11 @@
 	
 	<%@ include file="navigation.jsp" %>
 
-	<hr/>
-
 	<%
 	for (GoodsDTO good : goodsList) {
 	%>
 	<p>
-	<a href="./cateInfo.jsp?id=<%=good.getId()%>"><%=good.getName()%> <%=good.getPrice() %>원</a>
+	<a href="./goodsList_proc.jsp?id=<%=good.getId()%>"><%=good.getName()%> <%=good.getPrice() %>원</a>
 	</p>
 	<input type="number" data-id="<%=good.getId()%>" min="1" max="999" value="1">
 	<button class="putBtn" type="button">장바구니</button>

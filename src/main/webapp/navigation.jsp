@@ -11,6 +11,10 @@ a{
 	color: black;
 }
 
+hr{
+margin-top:17px;
+}
+
 .nav {
 	height: 50px;
 	
@@ -159,5 +163,6 @@ a{
 
 		</ul>
 	</div>
+<hr/>
 </body>
 </html>
