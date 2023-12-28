@@ -1,6 +1,5 @@
 <%@ page import="db.dto.GoodsDTO" %>
 <%@ page import="db.dao.GoodsDAO" %>
-<%@ page import="db.dto.CateDetailDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,7 +24,7 @@
 	}
 	
 	GoodsDAO goodsDAO = new GoodsDAO();
-	CateDetailDTO goods = goodsDAO.findDeskDetailById(intId);
+	GoodsDTO goods = goodsDAO.findDeskDetailById(intId);
 	
 	
 	%>

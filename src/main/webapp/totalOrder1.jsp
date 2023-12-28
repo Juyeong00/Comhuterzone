@@ -1,6 +1,5 @@
 <%@ page import="db.dto.GoodsDTO" %>
 <%@ page import="db.dao.GoodsDAO" %>
-<%@ page import="db.dto.CateDetailDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,7 +13,10 @@
 	
 	<%
 	String id = request.getParameter("id"); //personInfo.jsp
+	String count = request.getParameter("count");
+	
 	System.out.println(id);
+	System.out.println(count);
 	
 	int intId = 0;
 	try{
@@ -24,17 +26,21 @@
 		intId = 0;
 	}
 	
+	int intCount = 1;
+	
+	try {
+		intCount = Integer.parseInt(count); //예외
+	} catch (Exception e) {
+		e.printStackTrace(); //예외 발생 기록
+		intCount = 1;	
+	}
+	
 	GoodsDAO goodsDAO = new GoodsDAO();
-	CateDetailDTO goods = goodsDAO.findDeskDetailById(intId);
+	GoodsDTO goods = goodsDAO.findDeskDetailById(intId);
 	
 	
 	%>
 	
-	
-
-	
-	
-
 
 	<form action="main_proc.jsp" method="post" >
 		<h2>주문</h2>
@@ -92,7 +98,7 @@
 
 			<tr>
 				<td align="center" width="100px">총 결제 금액
-				<td><%=goods.getPrice() %></td></td>
+				<td><%=goods.getPrice() * intCount %></td></td>
 				
 			</tr>
 
