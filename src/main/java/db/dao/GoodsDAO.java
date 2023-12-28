@@ -119,7 +119,7 @@ public class GoodsDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " SELECT id, name "
+		String sql = " SELECT * "
 				+ "FROM goods "
 				+ "WHERE id = ? ";
 
@@ -132,7 +132,7 @@ public class GoodsDAO {
 			rs = psmt.executeQuery(); 
 			if(rs.next()) {
 			
-				desk = new GoodsDTO(rs.getInt("id"), rs.getString("name"));
+				desk = new GoodsDTO(rs.getInt("id"), rs.getString("name"), rs.getInt("price"), rs.getInt("quantity"));
 			}
 
 		} catch (SQLException e) {

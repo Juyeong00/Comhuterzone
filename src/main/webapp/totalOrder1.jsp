@@ -45,11 +45,8 @@
 	
 	%>
 	
- 	<input type= "hidden" name="id" value=""><%=goods.getId() %> 
-	<input type= "hidden" name="name" value=""><%=go.getName() %>
-	
 
-	<form action="main_proc.jsp" id = "order" method="post" >
+	<form action="main_proc.jsp" method="post" >
 		<h2>주문</h2>
 		<hr>
 		<table border="1" cellpadding="2">
