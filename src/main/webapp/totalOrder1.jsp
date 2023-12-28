@@ -1,5 +1,6 @@
 <%@ page import="db.dto.GoodsDTO" %>
 <%@ page import="db.dao.GoodsDAO" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,13 +13,13 @@
 	
 	
 	<%
-	String id = request.getParameter("id"); //personInfo.jsp
+	String id = request.getParameter("id"); // id값을 불러오겠다 
 	String count = request.getParameter("count");
 	
 	System.out.println(id);
 	System.out.println(count);
 	
-	int intId = 0;
+	int intId = 0; //
 	try{
 		intId = Integer.parseInt(id); //예외
 	} catch (Exception e){
@@ -39,10 +40,16 @@
 	GoodsDTO goods = goodsDAO.findDeskDetailById(intId);
 	
 	
+	GoodsDTO go = goodsDAO.findDeskDetailById2(intId);
+	
+	
 	%>
 	
+ 	<input type= "hidden" name="id" value=""><%=goods.getId() %> 
+	<input type= "hidden" name="name" value=""><%=go.getName() %>
+	
 
-	<form action="main_proc.jsp" method="post" >
+	<form action="main_proc.jsp" id = "order" method="post" >
 		<h2>주문</h2>
 		<hr>
 		<table border="1" cellpadding="2">
@@ -53,6 +60,13 @@
 				<td><%=goods.getName() %></td>
 				
 			</tr>
+			
+			<tr>
+				<td align="center">수량</td>
+			<td><%=intCount %></td>
+				
+			</tr>
+			
 			
 			<tr>
 				<td align="center">이름</td>
@@ -114,18 +128,20 @@
 	</form>
 
 	<script>
-		function button1() {
-			if (confirm('주문하시겠습니까?')) {
-				
-				location.href = 'orderedGoods.jsp';	
-				
-			}
+	function button1() {
+		if (confirm('주문하시겠습니까?')) {
+			
+			let form = document.getElementById('order');
+				form.action = 'orderedGoods.jsp';	
+				form.submit();	
+			
 		}
+	}
 
 		function button2() {
 			if (confirm('이전 상품 상품 페이지로 이동하시겠습니까?')) {
 				
-				location.href = 'deskCategory.jsp?id=1';
+				location.href = 'goodsList.jsp?id=<%=goods.getId()%>';
 				
 			}
 		}
