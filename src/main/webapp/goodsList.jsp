@@ -25,6 +25,7 @@
 	GoodsDAO goodsDAO = new GoodsDAO();
 	List<GoodsDTO> goodsList = goodsDAO.findDesktopList(intId);
 	GoodsDTO goods = goodsDAO.findDeskById(intId);
+	GoodsDTO go = goodsDAO.findDeskDetailById2(intId);
 	%>
 	
 	<h1><%=goods.getName() %></h1>
@@ -40,7 +41,7 @@
 	<input type="number" data-id="<%=good.getId()%>" min="1" max="999" value="1">
 	<button class="putBtn" type="button">장바구니</button>
 	<button class="buyBtn" type="button" data-id="<%=good.getId()%>">구매하기</button>
-
+	<input type="hidden" data-id="<%=good.getId()%>" data-value="<%=go.getQuantity() %>">
 	<%
 	}
 	%>
@@ -71,8 +72,14 @@
 			  	
 			  	inputCnt.value = valuecnt;
 			  	
-			  	form.action = 'totalOrder1.jsp';
-			  	form.submit();
+			  	if(inputCnt.value > <%=go.getQuantity() %>){
+			  		console.log(<%=go.getQuantity() %>)
+			  		alert('수량부족')
+			  		event.preventDefault();
+			  	}else{
+				  	form.action = 'totalOrder1.jsp';
+				  	form.submit();
+			  	}
 		    });
 		  });
 		  

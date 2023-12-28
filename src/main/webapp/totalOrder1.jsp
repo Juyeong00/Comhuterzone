@@ -41,7 +41,7 @@
 	
 	%>
 	
-
+	
 	<form action="main_proc.jsp" method="post" >
 		<h2>주문</h2>
 		<hr>
