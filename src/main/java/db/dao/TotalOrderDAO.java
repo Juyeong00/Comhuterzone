@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import db.dto.PersonInfoDTO;
 import db.dto.TotalOrderDTO;
 import db.util.DBConnectionManager;
 

@@ -22,7 +22,7 @@
 	}
 
 	GoodsDAO goodsDAO = new GoodsDAO();
-	GoodsDTO goods = goodsDAO.findDeskDetailById(intId);
+	GoodsDTO goods = goodsDAO.findDeskDetailById2(intId);
 	GoodsDTO go = goodsDAO.findDeskDetailById2(intId);
 	%>
 

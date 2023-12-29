@@ -4,6 +4,15 @@ import java.time.LocalDateTime;
 
 public class GoodsDTO {
 
+	public GoodsDTO(int id, String name, int price, String content, int quantity) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.content = content;
+		this.quantity = quantity;
+	}
+
 	int ca_id;
 	int ca_ref;
 	String ca_name;
