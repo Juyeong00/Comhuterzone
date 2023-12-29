@@ -3,6 +3,7 @@
 <%@ page import="db.dao.SignUpDAO" %>
 <%@ page import="db.dto.SignUpDTO" %>
 <%@ page import="java.util.List" %>
+<%@ page import="db.util.MyConvertDateUtil" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,6 +85,13 @@
         word-break: break-all;
     }
 
+    a:link {
+  color : #525d76;
+}
+a:visited {
+  color : #525d76;
+}
+
 </style>
 </head>
 <body>
@@ -114,7 +122,7 @@
         </thead>
         <% 
 		for(SignUpDTO SignUpInfo : SignUpList){		
-	%>
+		%>
         <tbody>
 		<tr>
 		<td class="tbody__th _center _left"><%=SignUpInfo.getId()%></td>
@@ -125,9 +133,9 @@
 		<td class="tbody__th _center _left"><%=SignUpInfo.getZipcode()%></td>
 		<td class="tbody__th _center _left"><%=SignUpInfo.getAddress()%></td>
 		<td class="tbody__th _center _left"><%=SignUpInfo.getAddress2()%></td>
-		<td class="tbody__th _center _left"><%=SignUpInfo.getBirthday()%></td>
+        <td class="tbody__th _center _left"><%=SignUpInfo.getBirthday()%></td>
 		<td class="tbody__th _center _left"><%=SignUpInfo.getIndate()%></td>
-        <td class="tbody__th _center _left"><input type="button" value="정보 수정"></td>
+        <td class="tbody__th _center _left"><a href="" style="text-decoration-line:none">정보 수정</a></td>
 		</tr>
         </tbody>
         
