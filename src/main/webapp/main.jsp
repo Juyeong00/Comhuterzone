@@ -38,8 +38,29 @@
 }
 
 .mainmenu {
-	width: 100%;
-	height: 200px;
+	width: 235px;
+	height: 500px;
+}
+
+.menubar {
+	list-style: none;
+	padding-left:0px;
+}
+
+.libar{
+	list-style: none;
+	float: left;
+	line-height: 32px;
+}
+
+.li-list::before{
+	content: '';
+    display: inline-block;
+    width: 1px;
+    height: 10px;
+    margin: 11px 8px 0 8px;
+    background-color: #ddd;
+    vertical-align: top;
 }
 
 </style>
@@ -52,17 +73,20 @@
     SignUpDTO loggedInMember = (SignUpDTO)session.getAttribute("loggedInMember");
     if (loggedInMember != null) {
 	%>
-	<a class="mypage" href="./mypage.jsp">내 정보</a> <a class="logout"
-		href="./logOut.jsp">로그아웃</a>
+	<ul class="menubar">
+	<li class="libar"><a class="mypage" href="./mypage.jsp">내 정보</a> </li>
+	<li class="libar li-list"><a class="logout" href="./logOut.jsp">로그아웃</a> </li>
 	<%
     } else {
 	%>
-	<a class="login" href="./login.jsp">로그인</a> <a class="signup"
-		href="./signUp.jsp">회원가입</a>
+	<li class="libar" ><a class="login" href="./login.jsp">로그인</a> </li>
+	<li class="libar li-list" ><a class="signup" href="./signUp.jsp">회원가입</a> </li>
+	</ul>
+	</div>
 	<%
     }
 	%>
-	</div>
+	
 	
 	<%@ include file="navigation.jsp" %>
 	
