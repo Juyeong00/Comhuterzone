@@ -12,8 +12,14 @@
 
 
 	<%
+	request.setCharacterEncoding("UTF-8");
 	String id = request.getParameter("id"); //personInfo.jsp
-	System.out.println(id);
+	String name = request.getParameter("name");
+	String count = request.getParameter("count");
+	
+	if(id == null ){
+		System.out.println("없음");
+	}
 	
 	
 	int intId = 0;
@@ -24,17 +30,26 @@
 		intId = 0;
 	}
 	
-		
+	int intCount = 0;
+	try{
+		intCount = Integer.parseInt(count); //예외
+	} catch (Exception e){
+		e.printStackTrace(); //예외 발생 기록
+		intCount = 0;
+	}
+	
+	GoodsDAO goodsDAO = new GoodsDAO(); 
+	GoodsDTO goods = goodsDAO.findDeskDetailById(intId);
+	GoodsDTO go = goodsDAO.findDeskDetailById2(intId);
+	
 	
 	%>
 
-	GoodsDAO goodsDAO = new GoodsDAO(); 
-	GoodsDTO goods = goodsDAO.findDeskDetailById(intId);
 	
 
 
 	<form method="post" action="totalOderd1_proc.jsp">
-
+	
 
 		<h2>주문하신 상품</h2>
 		<table border="1" cellpadding="2">
@@ -53,8 +68,14 @@
 			</tr>
 			<tr>
 				<td align="center">주문상품</td>
-				
+				<td><%=name %></td>
 			</tr>
+			
+			<tr>
+				<td align="center">수량</td>
+				<td><%=intCount%></td>
+			</tr>
+			
 		</table>
 	</form>
 
