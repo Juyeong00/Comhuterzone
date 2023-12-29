@@ -38,19 +38,21 @@
 }
 
 .mainmenu {
-	width: 235px;
+	width: 100%;
 	height: 500px;
 }
 
 .menubar {
 	list-style: none;
-	padding-left:0px;
+	width: 100%;
+	height: 40px;
 }
 
 .libar{
 	list-style: none;
 	float: left;
 	line-height: 32px;
+	justify-content: space-evenly;
 }
 
 .li-list::before{
@@ -69,19 +71,26 @@
 
 	<h2 class="title">2조 쇼핑몰</h2>
 	<div class="mainmenu">
+		<ul class="menubar">
 	<%
     SignUpDTO loggedInMember = (SignUpDTO)session.getAttribute("loggedInMember");
     if (loggedInMember != null) {
 	%>
-	<ul class="menubar">
-	<li class="libar"><a class="mypage" href="./mypage.jsp">내 정보</a> </li>
-	<li class="libar li-list"><a class="logout" href="./logOut.jsp">로그아웃</a> </li>
+			<li class="libar"><a class="mypage" href="./mypage.jsp">내 정보</a> </li>
+			<li class="libar li-list"><a class="logout" href="./logOut.jsp">로그아웃</a> </li>
+			<li class="libar li-list"><a class="admin" href="./admin.jsp">관리자</a> </li>
+		</ul>
+	</div>
 	<%
     } else {
 	%>
-	<li class="libar" ><a class="login" href="./login.jsp">로그인</a> </li>
-	<li class="libar li-list" ><a class="signup" href="./signUp.jsp">회원가입</a> </li>
-	</ul>
+	<div>
+			<ul>
+				<li class="libar" ><a class="login" href="./login.jsp">로그인</a> </li>
+				<li class="libar li-list" ><a class="signup" href="./signUp.jsp">회원가입</a> </li>
+				<li class="libar li-list"><a class="admin" href="./admin.jsp">관리자</a> </li>
+			</ul>
+		</div>
 	</div>
 	<%
     }
