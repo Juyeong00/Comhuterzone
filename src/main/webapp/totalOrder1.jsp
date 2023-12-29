@@ -1,5 +1,8 @@
 <%@ page import="db.dto.GoodsDTO" %>
 <%@ page import="db.dao.GoodsDAO" %>
+<%@ page import="db.dao.LoginMemberDAO" %>
+<%@ page import="db.dto.SignUpDTO" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,12 +14,14 @@
 <body>
 	
 	
+	
 	<%
 	String id = request.getParameter("id"); //personInfo.jsp
 	String count = request.getParameter("count");
 	
-	System.out.println(id);
-	System.out.println(count);
+	
+	//System.out.println(id);
+	//System.out.println(count);
 	
 	int intId = 0;
 	try{
@@ -35,14 +40,29 @@
 		intCount = 1;	
 	}
 	
+	
+	
+	
+	
+	
 	GoodsDAO goodsDAO = new GoodsDAO();
 	GoodsDTO goods = goodsDAO.findDeskDetailById(intId);
+	GoodsDTO go = goodsDAO.findDeskDetailById2(intId);
+	
+  	
+	
 	
 	
 	%>
 	
 	
-	<form action="main_proc.jsp" method="post" >
+	
+	<form id="orderForm" action="orderedGoods.jsp" method="post" >
+	<input type= "hidden" name="id" value="<%= goods.getId() %>">
+	<input type= "hidden" name="name" value="<%= go.getName() %>">
+	<input type= "hidden" name="count" value="<%=intCount %>">
+	
+	
 		<h2>주문</h2>
 		<hr>
 		<table border="1" cellpadding="2">
@@ -53,6 +73,11 @@
 				<td><%=goods.getName() %></td>
 				
 			</tr>
+			
+			<tr>
+				<td align="center">수량</td>
+			<td><%=intCount %></td>
+			
 			
 			<tr>
 				<td align="center">이름</td>
@@ -87,8 +112,8 @@
 			</tr>
 			<tr>
 				<td align="center">결제카드</td>
-				<td><input type="email" list="email2" name="email2"> <datalist
-						id="email2">
+				<td><input type="A" list="card" name="card"> <datalist
+						id="card">
 						<option value="삼성">
 						<option value="농협">
 						<option value="국민">
@@ -104,7 +129,8 @@
 
 			<tr>
 				<td colspan="2" align="center">
-					<input type="button"value="주문하기" onclick="button1()"> 
+					<!--  <button id="order" type="button">주문하기</button>-->
+					<input type="button" value="주문하기" onclick="button1()">
 					<input type="reset" value="돌아가기" onclick="button2()">
 				</td>
 			</tr>
@@ -117,7 +143,11 @@
 		function button1() {
 			if (confirm('주문하시겠습니까?')) {
 				
-				location.href = 'orderedGoods.jsp';	
+				
+				let form = document.getElementById('orderForm');
+				
+				form.action = 'orderedGoods.jsp';	
+				form.submit();
 				
 			}
 		}
@@ -125,10 +155,19 @@
 		function button2() {
 			if (confirm('이전 상품 상품 페이지로 이동하시겠습니까?')) {
 				
-				location.href = 'deskCategory.jsp?id=1';
+				location.href = 'goodsList.jsp?id=1';
 				
 			}
 		}
+		
+		/*
+		document.getElementById('order').addEventListener('click', ()=>{
+			let form = document.getElementById('orderForm');
+			
+			form.action = 'orderedGoods.jsp';
+		  	form.submit();
+		});
+		*/
 	</script>
 
 
