@@ -75,6 +75,30 @@ public class CartDAO {
 		return result;
 	}
 	
+	public int removeCartById(int id) {
+		
+		conn = DBConnectionManager.connectDB();
+
+		String sql =  " DELETE FROM cart " 
+					+ " WHERE cart_id = ? ";
+		
+		int result = 0;
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, id);
+
+			result = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return result;
+	}
+	
 	
 	
 	

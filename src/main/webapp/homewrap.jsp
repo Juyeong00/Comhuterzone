@@ -1,7 +1,6 @@
 <%@page import="db.dto.SignUpDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,32 +8,28 @@
 <title>Insert title here</title>
 <style>
 
-
-* {
+*{
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
-
-.mainmenu {
+.mainmenu{
 	width: 100%;
 	height: auto;	
 }
-.menubar {
+.menubar{
 	list-style: none;
 	width: 100%;
 	height: 40px;
 	display:flex;
 	justify-content: end;
 }
-
 .libar{
 	list-style: none;
 	float: left;
 	line-height: 32px;
 	justify-content: space-evenly;
 }
-
 .li-list::before{
 	content: '';
     display: inline-block;
@@ -44,17 +39,10 @@
     background-color: #ddd;
     vertical-align: top;
 }
-.container{
-	width:100%;
-	height:450px;
-	text-align: center;
-}
 </style>
 </head>
 <body>
-
-	
-	<div class="mainmenu">
+<div class="mainmenu">
 		<ul class="menubar">
 	<%
     SignUpDTO loggedInMember = (SignUpDTO)session.getAttribute("loggedInMember");
@@ -80,16 +68,6 @@
 	<%
     }
 	%>
-	
-	
-	<%@ include file="navigation.jsp" %>
-	<div class="container">
-	여기 뭐 넣을까요..??
-	</div>
-	<%@ include file="footer.jsp" %>
-	<script>
-
-</script>
 
 </body>
 </html>

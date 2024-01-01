@@ -6,19 +6,29 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 a{
 	text-decoration-line: none;
 	color: black;
 }
-
-hr{
-margin-top:17px;
+.header{
+	
 }
-
+.logo{
+	width:100%;
+	height:70px;
+	font-size:30px;
+	display:flex;
+	justify-content: center;
+}
 .nav {
 	height: 50px;
-	
 	display: flex;
+	background-color: #525d76;
 }
 
 .category {
@@ -97,13 +107,19 @@ margin-top:17px;
 	background: #BDBDBD;
 	color: #fff;
 }
+
 </style>
 </head>
 <body>
+ 
+	<div class="header">
+		<div class="logo"><a href="./main.jsp">2조이름</a></div>
+		
+	</div>
 	<div class="nav">
 		<ul class="category">
 
-			<li><a href="./goodsList.jsp?id=1">데스크탑</a>
+			<li><a href="./goodsList.jsp?id=1" style="color:white;">데스크탑</a>
 				<ul class="category2">
 					<li><a href="./goodsList.jsp?id=101">프리미엄PC</a>
 						<ul class="category3">
@@ -124,7 +140,7 @@ margin-top:17px;
 							<li><a href="./goodsList.jsp?id=1009">스틱PC/기타</a></li>
 						</ul></li>
 				</ul></li>
-			<li><a href="./goodsList.jsp?id=2">노트북</a>
+			<li><a href="./goodsList.jsp?id=2" style="color:white;">노트북</a>
 				<ul class="category2">
 
 					<li><a href="./goodsList.jsp?id=104">삼성</a></li>
@@ -132,7 +148,7 @@ margin-top:17px;
 					<li><a href="./goodsList.jsp?id=106">HP</a></li>
 					<li><a href="./goodsList.jsp?id=107">레노버</a></li>
 				</ul></li>
-			<li><a href="./goodsList.jsp?id=3">컴퓨터 부품</a>
+			<li><a href="./goodsList.jsp?id=3" style="color:white;">컴퓨터 부품</a>
 				<ul class="category2">
 					<li><a href="./goodsList.jsp?id=108">CPU</a>
 						<ul class="category3">
@@ -163,6 +179,8 @@ margin-top:17px;
 
 		</ul>
 	</div>
-<hr/>
+	
+	
+
 </body>
 </html>

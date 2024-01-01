@@ -44,15 +44,14 @@
 	%>
 	<script>
 		alert('장바구니에 담았습니다.');
-		location.href = 'cartList.jsp'; //해당 경로로 페이지 이동
+		location.href = 'cartList.jsp';
 	</script>
 	<%
 	}else{
 	%>
 	<script>
 		alert('장바구니에 담지 못하였습니다.');
-		//location.href = 'addPerson.jsp'; //해당 경로로 이동
-		history.back(); //뒤로가기
+		history.back();
 	</script>
 	<%	
 	}

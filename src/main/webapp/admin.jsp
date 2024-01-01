@@ -21,34 +21,32 @@
 	line-height: 145px;
 }
 
-                #topMenu {            
-                        height: 30px; 
-                        width: 850px; 
-                }
-                #topMenu ul li {                       
-                        list-style: none;          
-                        color: white;               
-                        background-color: #525d76;  
-                        float: left;                
-                        line-height: 30px;          
-                        vertical-align: middle;     
-                        text-align: center;        
-                }
-                #topMenu .menuLink {                               
-                        text-decoration:none;                     
-                        color: white;                             
-                        display: block;                            
-                        width: 150px;                              
-                        font-size: 12px;                           
-                        font-weight: bold;                         
-                        font-family: "Trebuchet MS", Dotum, Arial; 
-                }
-                #topMenu .menuLink:hover {            
-                        color: #ffffff;                   
-                        background-color: #000000;    
-                }
-        </style>
-
+#topMenu {            
+    height: 30px; 
+    width: 850px; 
+}
+#topMenu ul li {                       
+    list-style: none;          
+    color: white;               
+    background-color: #525d76;  
+    float: left;                
+    line-height: 30px;          
+    vertical-align: middle;     
+    text-align: center;        
+}
+#topMenu .menuLink {                               
+    text-decoration:none;                     
+    color: white;                             
+    display: block;                            
+    width: 150px;                              
+    font-size: 12px;                           
+    font-weight: bold;                         
+    font-family: "Trebuchet MS", Dotum, Arial; 
+}
+#topMenu .menuLink:hover {            
+    color: #ffffff;                   
+    background-color: #000000;    
+}
 </style>
 </head>
 <body>
