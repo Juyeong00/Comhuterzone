@@ -20,7 +20,7 @@ public class GoodsDAO {
 	public List<GoodsDTO> findDesktopList(int caid) {
 
 		conn = DBConnectionManager.connectDB();
-		String sql = " SELECT id, name, price "
+		String sql = " SELECT * "
 				+ "	FROM goods g, category c "
 				+ "	WHERE g.ca_id IN (SELECT ca_id "
 				+ "				      FROM category "
@@ -41,7 +41,7 @@ public class GoodsDAO {
 
 			while(rs.next()) {
 
-				GoodsDTO desktop = new GoodsDTO(rs.getInt("id"), rs.getString("name"), rs.getInt("price"));
+				GoodsDTO desktop = new GoodsDTO(rs.getInt("id"), rs.getString("name"), rs.getInt("price"), rs.getInt("quantity"));
 				deskList.add(desktop);
 
 			}
@@ -55,7 +55,7 @@ public class GoodsDAO {
 		return deskList;
 	}
 
-	public GoodsDTO findDeskById(int caid) {
+	public GoodsDTO findCategoryById(int caid) {
 
 		conn = DBConnectionManager.connectDB();
 
@@ -90,8 +90,8 @@ public class GoodsDAO {
 		conn = DBConnectionManager.connectDB();
 
 		String sql = " SELECT id, name, content, price "
-				+ "FROM goods "
-				+ "WHERE id = ? ";
+				+ " FROM goods "
+				+ " WHERE id = ? ";
 
 		GoodsDTO desk = null;
 
@@ -119,9 +119,9 @@ public class GoodsDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " SELECT * "
-				+ "FROM goods "
-				+ "WHERE id = ? ";
+		String sql = " SELECT id, name, price, content, quantity "
+				+ " FROM goods "
+				+ " WHERE id = ? ";
 
 		GoodsDTO desk = null;
 
@@ -132,7 +132,7 @@ public class GoodsDAO {
 			rs = psmt.executeQuery(); 
 			if(rs.next()) {
 			
-				desk = new GoodsDTO(rs.getInt("id"), rs.getString("name"), rs.getInt("price"), rs.getInt("quantity"));
+				desk = new GoodsDTO(rs.getInt("id"), rs.getString("name"), rs.getInt("price"), rs.getString("content"), rs.getInt("quantity"));
 			}
 
 		} catch (SQLException e) {
