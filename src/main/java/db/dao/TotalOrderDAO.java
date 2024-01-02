@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import db.dto.PersonInfoDTO;
 import db.dto.TotalOrderDTO;
 import db.util.DBConnectionManager;
 
@@ -70,30 +68,30 @@ public class TotalOrderDAO {
 		
 }
 	
-	public int saveTotalOrder(String orderDatd, String orderId, String user_name, String userId,
+	public int saveTotalOrder(String user_name, String userId,
 			String deliveryRequest, String phoneNum, String memberAdd1, String memberAdd2,
 			String memberAdd3, String paymentCard, String totalAmount ) {
 
 		conn = DBConnectionManager.connectDB();
 
 		String sql =  " INSERT INTO total_order " 
-				+ " VALUES ( ?, order_id_sq, ?, ? ,?, ?, ?, ?, ?, ?, ?  ) ";
+				+ " VALUES ( SYSDATE , order_id_sq, ?, ? ,?, ?, ?, ?, ?, ?, ?  ) ";
 		int result = 0;
 
 		try {
 			psmt = conn.prepareStatement(sql);
 			//Connection 활용해서 sql 명령을 실행하는 객체
 
-			psmt.setString (1, orderDatd);
-			psmt.setString (2, user_name);
-			psmt.setString (3, userId);
-			psmt.setString (4, deliveryRequest);
-			psmt.setString(5, phoneNum);
-			psmt.setString(6, memberAdd1);
+			
+			psmt.setString (1, user_name);
+			psmt.setString (2, userId);
+			psmt.setString (3, deliveryRequest);
+			psmt.setString(4, phoneNum);
+			psmt.setString(5, memberAdd1);
+			psmt.setString(6, memberAdd2);
 			psmt.setString(7, memberAdd2);
-			psmt.setString(8, memberAdd2);
-			psmt.setString(9, paymentCard);
-			psmt.setString(10, totalAmount);
+			psmt.setString(8, paymentCard);
+			psmt.setString(9, totalAmount);
 
 			result = psmt.executeUpdate(); //1 , 0 
 			//rs = psmt.executeQuery(); //준비된 sql 쿼리문 실행!
