@@ -35,6 +35,7 @@
 	text-align: center;
 	line-height: 145px;
 	display: flex;
+	cursor: pointer;
 }
 
 .mainmenu {
@@ -112,7 +113,7 @@
 	
 	<%@ include file="navigation.jsp" %>
 	
-	<footer class="ftbox"> </footer>
+	<footer class="ftbox" onclick="location.href='main.jsp'"> </footer>
 	<script>
 
 </script>

@@ -92,6 +92,16 @@ a:visited {
   color : #525d76;
 }
 
+    .ftbox {
+	width: 100%;
+	height: 150px;
+	background-color: #525d76;
+	color: #ffffff;
+	text-align: center;
+	line-height: 145px;
+	display: flex;
+	cursor: pointer;
+    }
 </style>
 </head>
 <body>
@@ -144,5 +154,6 @@ a:visited {
 	%>
 	</table>
     </div>
+    <footer class="ftbox" onclick="location.href='main.jsp'"> </footer>
 </body>
 </html>
