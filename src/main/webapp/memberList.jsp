@@ -135,7 +135,7 @@ a:visited {
 		<td class="tbody__th _center _left"><%=SignUpInfo.getAddress2()%></td>
         <td class="tbody__th _center _left"><%=SignUpInfo.getBirthday()%></td>
 		<td class="tbody__th _center _left"><%=SignUpInfo.getIndate()%></td>
-        <td class="tbody__th _center _left"><a href="" style="text-decoration-line:none">정보 수정</a></td>
+        <td class="tbody__th _center _left"><a href="./AdminMemberList.jsp?id=<%=SignUpInfo.getId()%>" style="text-decoration-line:none">정보 수정</a></td>
 		</tr>
         </tbody>
         
