@@ -17,7 +17,6 @@
 	String count = request.getParameter("count");
 	System.out.println("제품id: " + goods_id);
 	System.out.println("수량: " + count);
-	System.out.println(loggedInMember.getId());
 	
 	int intId = 0;
 	try {
@@ -34,27 +33,39 @@
 		e.printStackTrace();
 		intCount = 1;
 	}
-	System.out.println(loggedInMember.getName());
+	
 	CartDAO cartDAO = new CartDAO();
-	CartDTO cart = new CartDTO(loggedInMember.getId(), intId, intCount);
+    int result = 0;
 	
-	int result = cartDAO.saveCartInfo(cart);
+	 if (loggedInMember != null) {
+         CartDTO cart = new CartDTO(loggedInMember.getId(), intId, intCount);
+         result = cartDAO.saveCartInfo(cart);
+     }
+	 
+	 request.setAttribute("result", result);
+	%>
 	
-	if(result > 0){
-	%>
-	<script>
-		alert('장바구니에 담았습니다.');
-		location.href = 'cartList.jsp';
-	</script>
-	<%
-	}else{
-	%>
-	<script>
-		alert('장바구니에 담지 못하였습니다.');
-		history.back();
-	</script>
-	<%	
-	}
-	%>
+	
+	 <script>
+	
+     var loggedInMember = <%= (loggedInMember != null) ? "true" : "false" %>;
+     var result = <%= request.getAttribute("result") %>;
+
+     console.log(loggedInMember);
+     console.log(result);
+
+     if (loggedInMember && result > 0) {
+         alert('장바구니에 담았습니다');
+         location.href = 'cartList.jsp';
+     } else if (loggedInMember && result <= 0) {
+         alert('장바구니에 담지 못하였습니다');
+         history.back();
+     } else {
+         alert('로그인 후 이용가능합니다');
+         history.back();
+     }
+     
+        
+    </script>
 </body>
 </html>

@@ -20,8 +20,7 @@
 	display:flex;
 	margin:5px;
 	margin-top:15px;
-	border-bottom: 1px solid;
-	
+	border-bottom: 1px solid;	
 }
 .pro-content{
 	width:500px;
@@ -42,6 +41,8 @@
 </style>
 </head>
 <body>
+	<%@ include file="homewrap.jsp" %>
+	<%@ include file="navigation.jsp" %>
 
 	<%
 	
@@ -54,15 +55,11 @@
 		e.printStackTrace();
 		intId = 0;
 	}
-		
 	GoodsDAO goodsDAO = new GoodsDAO();
 	List<GoodsDTO> goodsList = goodsDAO.findDesktopList(intId);
 	GoodsDTO goods = goodsDAO.findCategoryById(intId);
-	
-	
 	%>
-	<%@ include file="homewrap.jsp" %>
-	<%@ include file="navigation.jsp" %>
+	
 	<div class="container">
 	
 	<h1 style="margin-top:10px;"><%=goods.getName() %></h1>
@@ -111,7 +108,7 @@
 			  
 			  	let valueid = buyBtn.dataset['id'];
 			    for (let i=0; i<pdQuan.length; i++) {
-		            if (pdQuan[i].dataset['id'] === valueid) {
+					if(pdQuan[i].dataset['id'] === valueid) {
 		                quanVal = pdQuan[i].dataset['value'];
 		                break;
 		            }
@@ -127,15 +124,13 @@
 			  	
 			  	inputCnt.value = valuecnt;
 			  	
-			  	
-			  	if(inputCnt.value > quanVal){
+		  		if(inputCnt.value > quanVal){
 			  		console.log(quanVal);
-			  		alert('수량부족');
+			  		alert('남아있는 수량보다 많이 선택하였습니다');
 			  		event.preventDefault();
 			  	}else{
 				  	form.action = 'totalOrder1.jsp';
-				  	form.submit();
-				  	
+				  	form.submit();  	
 			  	}
 			  	
 			});
@@ -165,15 +160,13 @@
 			  	inputCnt.value = valuecnt;
 			  	
 			  	
-			  	if(inputCnt.value > quanVal){
+		  		if(inputCnt.value > quanVal){
 			  		console.log(quanVal);
-			  		alert('수량부족');
+			  		alert('남아있는 수량보다 많이 선택하였습니다');
 			  		event.preventDefault();
 			  	}else{
-			  		
 				  	form.action = 'addCart.jsp';
-				  	form.submit();
-				  	
+				  	form.submit();  	
 			  	}
 			  	
 			});

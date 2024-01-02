@@ -76,6 +76,7 @@
    		<ul>
    			<li class="libar"><a class="mypage" href="./mypage.jsp">내 정보</a> </li>
 			<li class="libar li-list"><a class="logout" href="./logOut.jsp">로그아웃</a> </li>
+			<li class="libar li-list"><a class="cart" href="./cartList.jsp">장바구니</a> </li>
    		</ul>
    </div>
 	<%
