@@ -68,7 +68,7 @@
 	
 	
 	
-	<form id="orderForm" action="orderedGoods.jsp" method="post" >
+	<form id="orderForm" action="totalOrder_proc1.jsp" method="post" >
 	<input type= "hidden" name="id" value="<%= goods.getId() %>">
 	<input type= "hidden" name="name" value="<%= go.getName() %>">
 	<input type= "hidden" name="userId" value="<%= loggedInMember.getId() %>">
@@ -78,7 +78,7 @@
 	<input type= "hidden" name="zipcode" value="<%=loggedInMember.getZipcode() %>">
 	<input type= "hidden" name="address" value="<%=loggedInMember.getAddress() %>">
 	<input type= "hidden" name="address2" value="<%=loggedInMember.getAddress2() %>">
-	<input type= "hidden" name="card" id="cardType" value="">
+	<input type= "hidden" name="card" id="cardkey" value="">
 	<input type= "hidden" name="totalAmountInput" value="<%=goods.getPrice() * intCount %>">
 	 
 	 
@@ -141,12 +141,13 @@
 			</tr>
 			<tr>
 				<td align="center">결제카드</td>
-				<td><select name="cardType" id="card" style="width: 60px;">
-					    <option value="삼성">삼성</option>
-					    <option value="농협">농협</option>
-					    <option value="국민">국민</option>
-					    <option value="신한">신한</option>
-					</select></td>
+				<td><select name="cardType" id="card"  style="width: 60px;">
+						<option value="삼성">삼성</option>
+						<option value="농협">농협</option>
+						<option value="국민">국민</option>
+						<option value="신한">신한</option>
+					</select>
+				</td>
 			</tr>
 
 			<tr>
@@ -201,11 +202,11 @@
 				let zipcode = document.getElementById('zipcode');
 				let address = document.getElementById('address');
 				let address2 = document.getElementById('address2');
-				let cardType = document.getElementById('cartType');
+				let cardkey = document.getElementById('cardkey');
 				
-				let select = document.getElementById('card').value;
-				cardType.value = select;
-				
+				let selectedCardType = document.getElementById('card').value;
+		        cardkey.value = selectedCardType;
+
 				if( name.value== ""){
 					alert("이름 입력은 필수입니다.")
 				} else if (zipcode.value == ""){
