@@ -29,7 +29,7 @@
 	String delivery = request.getParameter("delivery");
 	String changeTest = request.getParameter("changeTest");
 	
-	
+	int intCount = Integer.parseInt(count);
 	int zipcode1 = Integer.parseInt(zipcode);
 	int totalAmountInput1 = Integer.parseInt(totalAmountInput);
 	// 입력값을 저장할 DTO 생성
