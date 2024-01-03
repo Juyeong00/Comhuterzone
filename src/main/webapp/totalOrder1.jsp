@@ -14,6 +14,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+
+.container{
+	display: flex;
+	flex-direction: column;
+	
+}
+
+</style>
+
 </head>
 <body>
 	<%@ include file="homewrap.jsp" %>
@@ -86,11 +96,11 @@
 	 
 	 
 	</form>
-	
+	<div class="container">
 		<h2>주문</h2>
 			<hr>
 			
-			<form>
+			<form class="order">
 				<input type="radio" name="info" value="회원정보" onClick="info_copy_chk(this.checked)" >
 				<label for ="회원정보">회원정보와 동일</label>
 				<input type="radio" id="info" name="info" value="새로운" onClick="info_chk(this.checked)" >
@@ -166,7 +176,7 @@
 				
 		</table>
 	</form>
-
+</div>
 	<script>
 	
 	

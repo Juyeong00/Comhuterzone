@@ -10,6 +10,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.container{
+	display: flex;
+	flex-direction: column;
+}
+</style>
 </head>
 <body>
 	<%@ include file="homewrap.jsp" %>
@@ -63,7 +69,7 @@
 	
 
 
-	<form method="post" action="totalOderd1_proc.jsp">
+	<form class="container" method="post" action="totalOderd1_proc.jsp">
 	
 
 		<h2>주문하신 상품</h2>

@@ -74,12 +74,16 @@
 	height:450px;
 	text-align: center;
 }
+
+.mypage, .logout, .cart, .admin, .mypage, .logout, .login, .signup{
+	font-weight : bold;
+}
 </style>
 </head>
 <body>
 
 
-	<h2 class="title" onclick="location.href='main.jsp'">2조 쇼핑몰</h2>
+	
 
 	<div class="mainmenu">
 		<ul class="menubar">
@@ -126,7 +130,7 @@
 	<%@ include file="navigation.jsp" %>
 
 	
-	<footer class="ftbox" onclick="location.href='main.jsp'"><h2>메인으로 돌아가기</h2></footer>
+	
 	<script>
 
 </script>
