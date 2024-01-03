@@ -92,16 +92,49 @@ a:visited {
   color : #525d76;
 }
 
-    .ftbox {
+.title {
 	width: 100%;
-	height: 150px;
+	height: 100px;
 	background-color: #525d76;
 	color: #ffffff;
 	text-align: center;
-	line-height: 145px;
-	display: flex;
+	line-height: 100px;
 	cursor: pointer;
-    }
+	margin: 0 auto;
+	border: 0;
+}
+
+    .ftbox {
+	width: 100%;
+	height: 100px;
+	background-color: #525d76;
+	color: #ffffff;
+	text-align: center;
+	line-height: 100px;
+	cursor: pointer;
+	margin: 0 auto;
+	border: 0;
+	display: flex;
+	align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+    .ftbox2 {
+	width: 50%;
+	height: 100px;
+	background-color: #525d76;
+	color: #ffffff;
+	text-align: center;
+	line-height: 100px;
+	cursor: pointer;
+	margin: 0 auto;
+	border: 0;
+	display: flex;
+	align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 </style>
 </head>
 <body>
@@ -154,6 +187,18 @@ a:visited {
 	%>
 	</table>
     </div>
-    <footer class="ftbox" onclick="location.href='main.jsp'"> </footer>
+    	<div class="ftbox">
+            <div class="ftbox2" onclick="history_go1()">
+                <h2>이전 페이지</h2>
+            </div>
+            <div class="ftbox2" onclick="location.href='main.jsp'">
+                <h2>메인으로 돌아가기</h2>
+            </div>
+        </div>
+<script>
+	function history_go1(){
+		history.go(-1);
+	}
+</script>
 </body>
 </html>
