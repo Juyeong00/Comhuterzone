@@ -16,6 +16,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%@ include file="homewrap.jsp" %>
+	<%@ include file="navigation.jsp" %>
 	
 	
 	
@@ -62,7 +64,7 @@
 	GoodsDTO goods = goodsDAO.findDeskDetailById(intId);
 	GoodsDTO go = goodsDAO.findDeskDetailById2(intId);
 	
-	SignUpDTO loggedInMember = (SignUpDTO)session.getAttribute("loggedInMember");
+	
 	
 	%>
 	
@@ -79,6 +81,7 @@
 	<input type= "hidden" name="address" value="<%=loggedInMember.getAddress() %>">
 	<input type= "hidden" name="address2" value="<%=loggedInMember.getAddress2() %>">
 	<input type= "hidden" name="card" id="cardkey" value="">
+	<input type= "hidden" name="delivery" id="deliverykey" value="">
 	<input type= "hidden" name="totalAmountInput" value="<%=goods.getPrice() * intCount %>">
 	 
 	 
@@ -117,20 +120,16 @@
 			
 			<tr>
 				<td align="center">배송요청 사항</td>
-				<td><select name="delivery" style="width: 200px;">
-						<option>빠른 배송 부탁드립니다.</option>
-						<option>문 앞에 놓아주세요.</option>
-						<option>경비실에 맡겨주세요.</option></td>
+				<td><select name="delivery" id="delivery"style="width: 200px;">
+						<option value="빠른 배송 부탁드립니다.">빠른 배송 부탁드립니다.</option>
+						<option value="문 앞에 놓아주세요.">문 앞에 놓아주세요.</option>
+						<option value="경비실에 맡겨주세요.">경비실에 맡겨주세요.</option>
+						</select></td>
 			</tr>
 
 			<tr>
 				<td align="center">핸드폰</td>
-				<td><select name="tel1" style="width: 60px;">
-						<option>010</option>
-						<option>011</option>
-						<option>017</option>
-				</select> - <input type="text" name="tel2" size="5" value= "<%=loggedInMember.getPhone() %>"> - 
-				<input type="text" name="tel3" size="5"></td>
+				<td><input type="text" name="tel2"  size="10px" value= "<%=loggedInMember.getPhone() %>"></td>
 			</tr>
 			<tr>
 				<td align="center">주소</td>
@@ -203,9 +202,15 @@
 				let address = document.getElementById('address');
 				let address2 = document.getElementById('address2');
 				let cardkey = document.getElementById('cardkey');
+				let deliverykey = document.getElementById('deliverykey');
 				
 				let selectedCardType = document.getElementById('card').value;
 		        cardkey.value = selectedCardType;
+		        
+		        let deliveryMType = document.getElementById('delivery').value;
+		        deliverykey.value = deliveryMType;
+		        
+		        
 
 				if( name.value== ""){
 					alert("이름 입력은 필수입니다.")

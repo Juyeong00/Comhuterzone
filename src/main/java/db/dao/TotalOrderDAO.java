@@ -54,14 +54,14 @@ public class TotalOrderDAO {
     // }
 
     // 새로운 주문 저장
-    public int saveTotalOrder(String user_name, String userId, String phoneNum,
+    public int saveTotalOrder(String user_name, String userId, String deliveryRequest, String phoneNum,
             int memberAdd1, String memberAdd2, String memberAdd3, String paymentCard, int totalAmount) {
         conn = DBConnectionManager.connectDB();
 
         String sql = "INSERT INTO total_order " +
-        	            "(order_date, order_id, user_name, user_id, phone_num, " +
+        	            "(order_date, order_id, user_name, user_id, delivery_request, phone_num, " +
         	            "member_add1, member_add2, member_add3, payment_card, total_amount) " +
-        			"VALUES (SYSDATE, order_id_sq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";
+        			"VALUES (SYSDATE, order_id_sq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         int result = 0;
 
@@ -70,12 +70,13 @@ public class TotalOrderDAO {
 
             psmt.setString(1, user_name);
             psmt.setString(2, userId);
-            psmt.setString(3, phoneNum);
-            psmt.setInt(4, memberAdd1);
-            psmt.setString(5, memberAdd2);
-            psmt.setString(6, memberAdd3);
-            psmt.setString(7, paymentCard);
-            psmt.setInt(8, totalAmount);
+            psmt.setString(3, deliveryRequest);
+            psmt.setString(4, phoneNum);
+            psmt.setInt(5, memberAdd1);
+            psmt.setString(6, memberAdd2);
+            psmt.setString(7, memberAdd3);
+            psmt.setString(8, paymentCard);
+            psmt.setInt(9, totalAmount);
 
             result = psmt.executeUpdate();
         } catch (SQLException e) {

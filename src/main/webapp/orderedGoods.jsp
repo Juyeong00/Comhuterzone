@@ -12,7 +12,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<%@ include file="homewrap.jsp" %>
+	<%@ include file="navigation.jsp" %>
 
 	<%
 	request.setCharacterEncoding("UTF-8");

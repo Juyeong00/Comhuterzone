@@ -51,7 +51,7 @@
 	TotalOrderDAO totalOrderDAO = new TotalOrderDAO();
 	GoodsDAO goodsDAO = new GoodsDAO();
 	
-	int result = totalOrderDAO.saveTotalOrder(orderName, userId, tel2, zipcode1, address, address2, card, totalAmountInput1 );
+	int result = totalOrderDAO.saveTotalOrder(orderName, userId, delivery, tel2, zipcode1, address, address2, card, totalAmountInput1 );
 	int updateQuantity = goodsDAO.modifyGoodsQuantity(intCount, intId);
 	
 	if (result > 0) {
