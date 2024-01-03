@@ -96,7 +96,7 @@ public class TotalOrderDAO {
 
         try {
             conn = DBConnectionManager.connectDB();
-            String sql = "SELECT TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') || LPAD(ORDER_ID_SQ.NEXTVAL, 3, '0') FROM DUAL";
+            String sql = "SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(ORDER_ID_SQ.NEXTVAL, 1, '0') FROM DUAL";
             psmt = conn.prepareStatement(sql);
             rs = psmt.executeQuery();
 

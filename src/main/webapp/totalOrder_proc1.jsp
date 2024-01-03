@@ -26,10 +26,13 @@
 	String address2 = request.getParameter("address2");
 	String card = request.getParameter("card");
 	String totalAmountInput = request.getParameter("totalAmountInput");
+	String delivery = request.getParameter("delivery");
+	String changeTest = request.getParameter("changeTest");
+	
 	
 	int zipcode1 = Integer.parseInt(zipcode);
 	int totalAmountInput1 = Integer.parseInt(totalAmountInput);
-	// 입력값을 저장할 DTO 생성
+	
 
 	
 	// GoodsDAO를 사용하여 상품 정보 조회
@@ -66,6 +69,7 @@
 	
 	
 	<script>
+		let changeTest = document.getElementById("changeTest");
 		let form = document.getElementById("orderGoodsForm");
 			alert('주문이 성공적으로 저장되었습니다.');
 			location.href = 'orderedGoods.jsp'; //해당 경로로 페이지 이동

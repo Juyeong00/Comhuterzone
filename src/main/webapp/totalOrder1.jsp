@@ -134,18 +134,18 @@
 			</tr>
 			<tr>
 				<td align="center">주소</td>
-				<td><input type="text" id="zipcode" name="zipcode" size="5" value= "" >
+				<td><input type="text" id="zipcode" name="zipcode" size="5" value= "<%=loggedInMember.getZipcode() %>" >
 					<input type="button"value="우편번호검색"><br> 
 				 	<input type="text" id="address" name="address" size="50" value="<%=loggedInMember.getAddress() %>" ><br>
 					<input type="text" id="address2"name="address2" size="50" value="<%=loggedInMember.getAddress2() %>"></td>
 			</tr>
 			<tr>
 				<td align="center">결제카드</td>
-				<td><select name="card" style="width: 60px;">
-						<option value="삼성">삼성</option>
-						<option value="농협">농협</option>
-						<option value="국민">국민</option>
-						<option value="신한">신한</option></td>
+				<td><select name="cardType" id="changeTest" onchange="changeFn()" style="width: 60px;">
+						<option value="ss">삼성</option>
+						<option value="nh">농협</option>
+						<option value="kb">국민</option>
+						<option value="sh">신한</option></td>
 			</tr>
 
 			<tr>
@@ -229,6 +229,18 @@
 		}
 		
 		
+		
+		function changeFn(){
+			let changeTest = document.getElementById('changeTest');
+			let cardTypeInput = document.getElementById('cardTypeInput');
+			cardTypeInput.value = changeTest.options[changeTest.selectedIndex].value;
+		
+		
+			//console.log(result.changeTest);
+			let form = document.getElementById('orderForm'); // form 변수를 사용합니다.
+		    form.action = 'totalOrder_proc1.jsp'; // form에 직접 action을 설정합니다.
+		    form.submit();
+		}
 		
 		
 	</script>
