@@ -89,7 +89,7 @@
 		  		event.preventDefault();
 			} else{
 			
-				form.action='totalOrder1.jsp';
+				form.action='buyGoods.jsp';
 				form.submit();
 			}
 		  	

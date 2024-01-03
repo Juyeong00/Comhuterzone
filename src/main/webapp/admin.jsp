@@ -40,45 +40,44 @@
 }
 
 
-                #topMenu {            
-                        height: 200px; 
-                        width: 50%; 
-                        margin: 0 auto;
-	                border: 0;
-	                border: solid 1px #525d76;
-                }
-                #topMenu ul li {                       
-                        list-style: none;          
-                        color: white;               
-                        background-color: #f6f8fa;                 
-                        vertical-align: middle;     
-                        text-align: center;  
-                        line-height: 50px;   
-                        font-size: 14px;
-						margin-bottom: 10px;
-						border: none;
-						border-radius: 5px;
-						padding: 10px;
-                }
-                #topMenu .menuLink {                               
-                        text-decoration:none;                     
-                        color: #000000;                             
-                        display: block;                                                                                
-                        font-weight: bold;  
-                        margin: 0 auto;
-	              		border: 0;                       
-                }
-                #topMenu .menuLink:hover {            
-                        color: #ffffff;                   
-                        background-color: #000000;    
-                }
-        </style>
+#topMenu {            
+        height: 200px; 
+        width: 50%; 
+        margin: 0 auto;
+ border: 0;
+ border: solid 1px #525d76;
+}
+#topMenu ul li {                       
+        list-style: none;          
+        color: white;               
+        background-color: #f6f8fa;                 
+        vertical-align: middle;     
+        text-align: center;  
+        line-height: 50px;   
+        font-size: 14px;
+		margin-bottom: 10px;
+		border: none;
+		border-radius: 5px;
+		padding: 10px;
+ }
+#topMenu .menuLink {                               
+    text-decoration:none;                     
+    color: #000000;                             
+    display: block;                                                                                
+    font-weight: bold;  
+    margin: 0 auto;
+	border: 0;                       
+}
+#topMenu .menuLink:hover {            
+    color: #ffffff;                   
+    background-color: #000000;    
+}
+ </style>
 
 
-</style>
 </head>
 <body>
-    <h2 class="title"><a href="main.jsp">관리자 페이지</a></h2>
+    <h2 class="title">관리자 페이지</h2>
 <nav id="topMenu">
     <ul>
         <li><a class="menuLink" href="memberList.jsp">회원 목록</a></li>

@@ -30,7 +30,7 @@
 	int zipcode1 = Integer.parseInt(zipcode);
 	int totalAmountInput1 = Integer.parseInt(totalAmountInput);
 	// 입력값을 저장할 DTO 생성
-
+	int intCount = Integer.parseInt(count);
 	
 	// GoodsDAO를 사용하여 상품 정보 조회
 	int intId = 0;
@@ -41,21 +41,19 @@
 		intId = 0;
 	}
 	
-	GoodsDAO goodsDAO = new GoodsDAO();
-	GoodsDTO goods = goodsDAO.findDeskDetailById(intId);
-	GoodsDTO go = goodsDAO.findDeskDetailById2(intId);
-	
 	// 세션에서 로그인된 회원 정보 조회
 	SignUpDTO loggedInMember = (SignUpDTO)session.getAttribute("loggedInMember");
 	
 	// TotalOrderDAO를 사용하여 주문 정보 저장
 	TotalOrderDAO totalOrderDAO = new TotalOrderDAO();
+	GoodsDAO goodsDAO = new GoodsDAO();
 	
 	int result = totalOrderDAO.saveTotalOrder(orderName, userId, tel2, zipcode1, address, address2, card, totalAmountInput1 );
-	
+	int updateQuantity = goodsDAO.modifyGoodsQuantity(intCount, intId);
 	
 	if (result > 0) {
-		 System.out.println(result);
+		System.out.println(result);
+		System.out.println(updateQuantity);
 	%>
 	
 	<form id="orderGoodsForm" action="orderedGoods.jsp" method="post">
