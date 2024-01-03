@@ -19,10 +19,11 @@ public class CartDAO {
 	public List<CartDTO> findCartList(String user_id) {
 
 		conn = DBConnectionManager.connectDB();
-		String sql = " SELECT cart_id, name, price * c. quantity price, c.quantity, content "
+		String sql = " SELECT c.goods_id as goods_id, g.name as name, g.price * SUM(c.quantity) AS price, SUM(c.quantity) AS quantity, g.content as content "
 				+ " FROM goods g, cart c "
 				+ " WHERE g.id = c.goods_id "
-				+ " AND user_id = ? ";
+				+ " AND user_id = ? "
+				+ " GROUP BY c.goods_id, g.name, g.price, g.content ";
 
 		List<CartDTO> cartList = null;
 
@@ -35,7 +36,7 @@ public class CartDAO {
 
 			while(rs.next()) {
 
-				CartDTO cart = new CartDTO(rs.getInt("cart_id"), rs.getString("name"), rs.getInt("price"), rs.getInt("quantity"), rs.getString("content"));
+				CartDTO cart = new CartDTO(rs.getInt("goods_id"), rs.getString("name"), rs.getInt("price"), rs.getInt("quantity"), rs.getString("content"));
 				cartList.add(cart);
 
 			}
@@ -53,8 +54,14 @@ public class CartDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " INSERT INTO cart "
-				   + " VALUES(cart_seq.NEXTVAL, ?, ?, ? ) ";
+		String sql = " MERGE INTO cart c "
+				+ " USING (SELECT ? AS user_id, ? AS goods_id, ? AS quantity FROM dual) s "
+				+ " ON (c.user_id = s.user_id AND c.goods_id = s.goods_id) "
+				+ " WHEN MATCHED THEN "
+				+ "    UPDATE SET c.quantity = c.quantity + s.quantity "
+				+ " WHEN NOT MATCHED THEN "
+				+ "    INSERT (user_id, goods_id, quantity) "
+				+ "    VALUES (s.user_id, s.goods_id, s.quantity) ";
 		int result = 0;
 
 		try {
@@ -80,7 +87,7 @@ public class CartDAO {
 		conn = DBConnectionManager.connectDB();
 
 		String sql =  " DELETE FROM cart " 
-					+ " WHERE cart_id = ? ";
+					+ " WHERE goods_id = ? ";
 		
 		int result = 0;
 		

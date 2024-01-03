@@ -46,7 +46,9 @@
 		<ul class="menubar">
 	<%
     SignUpDTO loggedInMember = (SignUpDTO)session.getAttribute("loggedInMember");
-    if (loggedInMember != null) {
+	if (loggedInMember != null) {
+   	 String memberId = loggedInMember.getId();
+        if ("admin".equals(memberId)) {
 	%>
 			<li class="libar"><a class="mypage" href="./mypage.jsp">내 정보</a> </li>
 			<li class="libar li-list"><a class="logout" href="./logOut.jsp">로그아웃</a> </li>
@@ -55,19 +57,31 @@
 		</ul>
 	</div>
 	<%
-    } else {
+   	} else {
+  %>
+  <div>
+  		<ul>
+  			<li class="libar"><a class="mypage" href="./mypage.jsp">내 정보</a> </li>
+			<li class="libar li-list"><a class="logout" href="./logOut.jsp">로그아웃</a> </li>
+			<li class="libar li-list"><a class="cart" href="./cartList.jsp">장바구니</a> </li>
+  		</ul>
+  </div>
+	<%
+   	}
+   } else {
 	%>
 	<div>
 			<ul>
 				<li class="libar" ><a class="login" href="./login.jsp">로그인</a> </li>
 				<li class="libar li-list" ><a class="signup" href="./signUp.jsp">회원가입</a> </li>
-				<li class="libar li-list"><a class="admin" href="./admin.jsp">관리자</a> </li>
+
 			</ul>
-		</div>
 	</div>
+
 	<%
-    }
+   }
 	%>
+	</div>
 
 </body>
 </html>

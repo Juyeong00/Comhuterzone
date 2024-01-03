@@ -39,6 +39,7 @@
     justify-content: center;
 }
 
+
                 #topMenu {            
                         height: 200px; 
                         width: 50%; 
@@ -73,13 +74,15 @@
                 }
         </style>
 
+
 </style>
 </head>
 <body>
-    <h2 class="title">관리자 페이지</h2>
+    <h2 class="title"><a href="main.jsp">관리자 페이지</a></h2>
 <nav id="topMenu">
     <ul>
         <li><a class="menuLink" href="memberList.jsp">회원 목록</a></li>
+        <li><a class="menuLink" href="admin_goodsList.jsp">제품 목록</a></li>
     </ul>
 </nav>
 	<div class="ftbox">

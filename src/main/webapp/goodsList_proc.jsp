@@ -40,6 +40,8 @@
 </head>
 <body>
 
+	<%@ include file="homewrap.jsp" %>
+	<%@ include file="navigation.jsp" %>
 	<%
 	String id = request.getParameter("id");
 	System.out.println(id);
@@ -56,8 +58,6 @@
 	GoodsDTO go = goodsDAO.findDeskDetailById2(intId);
 	%>
 
-	<%@ include file="homewrap.jsp" %>
-	<%@ include file="navigation.jsp" %>
 	<div class="container">
 		<div class="pro-name"><h2><%=goods.getName() %></h2></div>
 		<div class="pro-content"><p><%=goods.getContent() %></p></div>
@@ -81,15 +81,18 @@
 			let pdCnt = document.getElementById('pdCnt');
 			let inputCnt = document.getElementById('inputCnt');
 			
+			
+		
 			if(pdCnt.value < inputCnt.value){
 				console.log(pdCnt.value)
-		  		alert('수량부족')
+		  		alert('남아있는 수량보다 많이 선택하였습니다');
 		  		event.preventDefault();
 			} else{
 			
 				form.action='totalOrder1.jsp';
 				form.submit();
 			}
+		  	
 		});
 		
 		document.getElementById('putBtn').addEventListener('click', ()=>{
@@ -98,9 +101,10 @@
 			let pdCnt = document.getElementById('pdCnt');
 			let inputCnt = document.getElementById('inputCnt');
 			
+			
 			if(pdCnt.value < inputCnt.value){
 				console.log(pdCnt.value)
-		  		alert('수량부족')
+		  		alert('남아있는 수량보다 많이 선택하였습니다');
 		  		event.preventDefault();
 			} else{
 			
