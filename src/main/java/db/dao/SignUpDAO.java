@@ -97,4 +97,74 @@ public List<SignUpDTO> findMemberList() {
 		
 		return memberList;
 	}
+
+public SignUpDTO findMemberInfoById(String id) {
+	
+	conn = DBConnectionManager.connectDB();
+	
+	String sql = " SELECT * FROM member_table " 
+		       + " WHERE id = ? ";
+	
+	SignUpDTO signUpDTO = null; //return 할 객체
+	
+	try {
+		psmt = conn.prepareStatement(sql);
+
+		psmt.setString(1, id);
+		
+		rs = psmt.executeQuery(); //준비된 sql 쿼리문 실행!
+		
+		if(rs.next()) {
+			
+			signUpDTO = new SignUpDTO(
+					rs.getString("id"), rs.getString("password"),
+					rs.getString("name"), rs.getString("email"), 
+					rs.getString("phone"), rs.getString("zipcode"), 
+					rs.getString("address"), rs.getString("address2"), 
+					rs.getString("birthday"), rs.getString("indate"));
+			
+		}
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		DBConnectionManager.closeDB(conn, psmt, rs);
+	}
+	
+	return signUpDTO;
+}
+
+public int removeSignUpInfoById(String id) { 
+	//해당 아이디에 맞는 사람의 정보를 삭제!!
+	
+	conn = DBConnectionManager.connectDB();
+	
+	String sql = " DELETE FROM member_table "
+			   + " WHERE id = ? ";
+	
+	int result = 0;
+	
+	try {
+		psmt = conn.prepareStatement(sql);
+		//Connection 활용해서 sql 명령을 실행하는 객체
+		
+		psmt.setString(1, id);
+
+		result = psmt.executeUpdate();
+		//rs = psmt.executeQuery(); //준비된 sql 쿼리문 실행!
+		
+		/*
+		SELECT 쿼리 : psmt.executeQuery(); -> 결과로 ResultSet
+		INSERT, UPDATE, DELETE 쿼리 : psmt.executeUpdate();
+									-> 결과로 적용된 행의 숫자
+		 */
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		DBConnectionManager.closeDB(conn, psmt, rs);
+	}
+	
+
+	return result;
+}
 }

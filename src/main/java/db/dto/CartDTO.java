@@ -8,25 +8,23 @@ public class CartDTO {
 	int goods_id;
 	int quantity;
 	String content;
-	int cart_id;
 	
-	public CartDTO(int cart_id, String name, int price, int quantity, String content) {
+	public CartDTO(String name, int price, int quantity, String content, int goods_id) {
 		super();
-		this.cart_id = cart_id;
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
 		this.content = content;
+		this.goods_id = goods_id;
 	}
 
-
-	public int getCart_id() {
-		return cart_id;
-	}
-
-
-	public void setCart_id(int cart_id) {
-		this.cart_id = cart_id;
+	public CartDTO(int goods_id, String name, int price, int quantity, String content ) {
+		super();
+		this.name = name;
+		this.goods_id = goods_id;
+		this.price = price;
+		this.quantity = quantity;
+		this.content = content;
 	}
 
 
@@ -69,9 +67,6 @@ public class CartDTO {
 		this.goods_id = goods_id;
 		this.quantity = quantity;
 	}
-	
-	
-	
 
 	public String getUser_id() {
 		return user_id;

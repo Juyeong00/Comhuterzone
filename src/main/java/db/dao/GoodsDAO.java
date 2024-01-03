@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -227,6 +228,43 @@ public class GoodsDAO {
 		}
 	
 		return result;
+	}
+	
+	public List<GoodsDTO> findGoodsList() {
+
+		conn = DBConnectionManager.connectDB();
+		String sql = " SELECT * FROM goods ORDER BY id ";
+
+		List<GoodsDTO> goodsList = null;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+
+			goodsList = new ArrayList<GoodsDTO>();
+
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				int price = rs.getInt("price");
+				int quantity = rs.getInt("quantity");
+				String content = rs.getString("content");
+				LocalDateTime regist_date
+				= MyConvertDateUtil.convertTimestampToLocalDateTime(rs.getTimestamp("regist_date"));
+				int ca_id = rs.getInt("ca_id");
+				
+				GoodsDTO goods = new GoodsDTO(id, name, price, quantity, content, regist_date, ca_id);
+				goodsList.add(goods);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return goodsList;
 	}
 
 

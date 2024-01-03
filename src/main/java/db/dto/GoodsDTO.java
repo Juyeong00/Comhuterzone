@@ -12,6 +12,19 @@ public class GoodsDTO {
 		this.content = content;
 		this.quantity = quantity;
 	}
+	
+
+	public GoodsDTO(int id, String name, int price, int quantity, String content, LocalDateTime regist_date, int ca_id) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.quantity = quantity;
+		this.content = content;
+		this.regist_date = regist_date;
+		this.ca_id = ca_id;
+	}
+
 
 	int ca_id;
 	int ca_ref;

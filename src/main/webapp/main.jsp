@@ -16,6 +16,31 @@
 	box-sizing: border-box;
 }
 
+.title {
+	width: 50%;
+	height: 150px;
+	background-color: #525d76;
+	color: #ffffff;
+	text-align: center;
+	line-height: 145px;
+	cursor: pointer;
+	margin: 0 auto;
+	border: 0;
+}
+
+    .ftbox {
+	width: 50%;
+	height: 150px;
+	background-color: #525d76;
+	color: #ffffff;
+	text-align: center;
+	line-height: 145px;
+	cursor: pointer;
+	margin: 0 auto;
+	border: 0;
+}
+
+
 .mainmenu {
 	width: 100%;
 	height: auto;	
@@ -53,12 +78,17 @@
 </head>
 <body>
 
-	
+
+	<h2 class="title" onclick="location.href='main.jsp'">2조 쇼핑몰</h2>
+
 	<div class="mainmenu">
 		<ul class="menubar">
 	<%
     SignUpDTO loggedInMember = (SignUpDTO)session.getAttribute("loggedInMember");
+
     if (loggedInMember != null) {
+    	 String memberId = loggedInMember.getId();
+         if ("admin".equals(memberId)) {
 	%>
 			<li class="libar"><a class="mypage" href="./mypage.jsp">내 정보</a> </li>
 			<li class="libar li-list"><a class="logout" href="./logOut.jsp">로그아웃</a> </li>
@@ -67,26 +97,36 @@
 		</ul>
 	</div>
 	<%
+    	} else {
+   %>
+   <div>
+   		<ul>
+   			<li class="libar"><a class="mypage" href="./mypage.jsp">내 정보</a> </li>
+			<li class="libar li-list"><a class="logout" href="./logOut.jsp">로그아웃</a> </li>
+			<li class="libar li-list"><a class="cart" href="./cartList.jsp">장바구니</a> </li>
+   		</ul>
+   </div>
+	<%
+    	}
     } else {
 	%>
 	<div>
 			<ul>
 				<li class="libar" ><a class="login" href="./login.jsp">로그인</a> </li>
 				<li class="libar li-list" ><a class="signup" href="./signUp.jsp">회원가입</a> </li>
-				<li class="libar li-list"><a class="admin" href="./admin.jsp">관리자</a> </li>
+
 			</ul>
-		</div>
 	</div>
+
 	<%
     }
 	%>
-	
+	</div>
 	
 	<%@ include file="navigation.jsp" %>
-	<div class="container">
-	여기 뭐 넣을까요..??
-	</div>
-	<%@ include file="footer.jsp" %>
+
+	
+	<footer class="ftbox" onclick="location.href='main.jsp'"><h2>메인으로 돌아가기</h2></footer>
 	<script>
 
 </script>
