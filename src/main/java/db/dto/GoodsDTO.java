@@ -4,6 +4,27 @@ import java.time.LocalDateTime;
 
 public class GoodsDTO {
 
+	int ca_id;
+	int ca_ref;
+	String ca_name;
+	int id;
+	String name;
+	int price;
+	String content;
+	LocalDateTime regist_date;
+	int quantity;
+
+
+	public GoodsDTO(String name, int price, int quantity, String content, int ca_id, int id) {
+		this.name = name;
+		this.price = price;
+		this.quantity = quantity;
+		this.content = content;
+		this.ca_id = ca_id;
+		this.id = id;
+	}
+
+
 	public GoodsDTO(int id, String name, int price, String content, int quantity) {
 		super();
 		this.id = id;
@@ -12,7 +33,7 @@ public class GoodsDTO {
 		this.content = content;
 		this.quantity = quantity;
 	}
-	
+
 
 	public GoodsDTO(int id, String name, int price, int quantity, String content, LocalDateTime regist_date, int ca_id) {
 		super();
@@ -24,18 +45,6 @@ public class GoodsDTO {
 		this.regist_date = regist_date;
 		this.ca_id = ca_id;
 	}
-
-
-	int ca_id;
-	int ca_ref;
-	String ca_name;
-	int id;
-	String name;
-	int price;
-	String content;
-	LocalDateTime regist_date;
-	int quantity;
-
 
 	public GoodsDTO() {}
 
@@ -167,5 +176,16 @@ public class GoodsDTO {
 		this.price = price;
 	}
 
+
+	public GoodsDTO(String name, int price, int quantity, String content, int ca_id) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.quantity = quantity;
+		this.content = content;
+		this.ca_id = ca_id;
+	}
+
+	
 
 }

@@ -48,8 +48,8 @@
 	
 	 <script>
 	
-     var loggedInMember = <%= (loggedInMember != null) ? "true" : "false" %>;
-     var result = <%= request.getAttribute("result") %>;
+     let loggedInMember = <%= (loggedInMember != null) ? "true" : "false" %>;
+     let result = <%= request.getAttribute("result") %>;
 
      console.log(loggedInMember);
      console.log(result);
@@ -65,7 +65,6 @@
          history.back();
      }
      
-        
     </script>
 </body>
 </html>
