@@ -57,6 +57,16 @@
 	GoodsDTO goods = goodsDAO.findDeskDetailById2(intId);
 	GoodsDTO go = goodsDAO.findDeskDetailById2(intId);
 	%>
+	<%
+	if(goods == null){
+	%>
+	<script>
+		alert('제품 정보가 없습니다');
+		location.href="main.jsp";
+		</script>
+	<%
+	}else{
+	%>
 
 	<div class="container">
 		<div class="pro-name"><h2><%=goods.getName() %></h2></div>
@@ -113,5 +123,9 @@
 			}
 		});
 	</script>
+	
+	<%
+	}
+	%>
 </body>
 </html>
