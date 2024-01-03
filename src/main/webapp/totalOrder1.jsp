@@ -20,8 +20,15 @@
 	
 	
 	<%
+	request.setCharacterEncoding("UTF-8");
 	String id = request.getParameter("id"); //personInfo.jsp
 	String count = request.getParameter("count");
+	String orderName = request.getParameter("orderName");
+	String tel2 = request.getParameter("tel2");
+	String zipcode = request.getParameter("zipcode");
+	String address = request.getParameter("address");
+	String address2 = request.getParameter("address2");
+	String card = request.getParameter("card");
 	
 	
 	//System.out.println(id);
@@ -64,8 +71,18 @@
 	<form id="orderForm" action="orderedGoods.jsp" method="post" >
 	<input type= "hidden" name="id" value="<%= goods.getId() %>">
 	<input type= "hidden" name="name" value="<%= go.getName() %>">
+	<input type= "hidden" name="userId" value="<%= loggedInMember.getId() %>">
+	<input type= "hidden" name="tel2" value="<%= loggedInMember.getPhone() %>">
 	<input type= "hidden" name="count" value="<%=intCount %>">
-	
+	<input type= "hidden" name="orderName" value="<%=loggedInMember.getName() %>">
+	<input type= "hidden" name="zipcode" value="<%=loggedInMember.getZipcode() %>">
+	<input type= "hidden" name="address" value="<%=loggedInMember.getAddress() %>">
+	<input type= "hidden" name="address2" value="<%=loggedInMember.getAddress2() %>">
+	<input type= "hidden" name="card" value="card">
+	<input type= "hidden" name="totalAmountInput" value="<%=goods.getPrice() * intCount %>">
+	 
+	 
+	</form>
 	
 		<h2>주문</h2>
 			<hr>
@@ -100,7 +117,7 @@
 			
 			<tr>
 				<td align="center">배송요청 사항</td>
-				<td><select name="Delivery" style="width: 200px;">
+				<td><select name="delivery" style="width: 200px;">
 						<option>빠른 배송 부탁드립니다.</option>
 						<option>문 앞에 놓아주세요.</option>
 						<option>경비실에 맡겨주세요.</option></td>
@@ -109,15 +126,15 @@
 			<tr>
 				<td align="center">핸드폰</td>
 				<td><select name="tel1" style="width: 60px;">
-						<option value="010">010</option>
-						<option value="011">011</option>
-						<option value="017">017</option>
-				</select> - <input type="text" name="tel2" size="5"> - 
+						<option>010</option>
+						<option>011</option>
+						<option>017</option>
+				</select> - <input type="text" name="tel2" size="5" value= "<%=loggedInMember.getPhone() %>"> - 
 				<input type="text" name="tel3" size="5"></td>
 			</tr>
 			<tr>
 				<td align="center">주소</td>
-				<td><input type="text" id="zipcode" name="zipcode" size="5" value= "<%=loggedInMember.getZipcode() %>" >
+				<td><input type="text" id="zipcode" name="zipcode" size="5" value= "" >
 					<input type="button"value="우편번호검색"><br> 
 				 	<input type="text" id="address" name="address" size="50" value="<%=loggedInMember.getAddress() %>" ><br>
 					<input type="text" id="address2"name="address2" size="50" value="<%=loggedInMember.getAddress2() %>"></td>
@@ -178,13 +195,29 @@
 		function button1() {
 			if (confirm("주문하시겠습니까?")) {
 				
+				let form = document.getElementById('orderForm');		
+				let name = document.getElementById('ordername');
+				let zipcode = document.getElementById('zipcode');
+				let address = document.getElementById('address');
+				let address2 = document.getElementById('address2');
 				
-				let form = document.getElementById('orderForm');
-				
-				form.action = 'totalOrder_proc.jsp';	
-				form.submit();
-				
+				if( name.value== ""){
+					alert("이름 입력은 필수입니다.")
+				} else if (zipcode.value == ""){
+					alert("우편번호 입력은 필수입니다.")
+				} else if (address.value == ""){
+					alert("주소 입력은 필수입니다.")
+				} else if (address2.value == ""){
+					alert("상세주소 입력은 필수입니다.")
+				} else {
+					let form = document.getElementById('orderForm');
+					alert("주문이 완료되었습니다.")		
+							form.action = 'totalOrder_proc1.jsp';	
+							form.submit();
+				}
+							
 			}
+				
 		}
 
 		function button2() {
@@ -194,6 +227,8 @@
 				
 			}
 		}
+		
+		
 		
 		
 	</script>
