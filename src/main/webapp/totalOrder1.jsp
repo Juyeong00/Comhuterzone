@@ -78,7 +78,7 @@
 	<input type= "hidden" name="zipcode" value="<%=loggedInMember.getZipcode() %>">
 	<input type= "hidden" name="address" value="<%=loggedInMember.getAddress() %>">
 	<input type= "hidden" name="address2" value="<%=loggedInMember.getAddress2() %>">
-	<input type= "hidden" name="card" value="card">
+	<input type= "hidden" name="card" id="cardType" value="">
 	<input type= "hidden" name="totalAmountInput" value="<%=goods.getPrice() * intCount %>">
 	 
 	 
@@ -141,11 +141,12 @@
 			</tr>
 			<tr>
 				<td align="center">결제카드</td>
-				<td><select name="cardType" id="changeTest" onchange="changeFn()" style="width: 60px;">
-						<option value="ss">삼성</option>
-						<option value="nh">농협</option>
-						<option value="kb">국민</option>
-						<option value="sh">신한</option></td>
+				<td><select name="cardType" id="card" style="width: 60px;">
+					    <option value="삼성">삼성</option>
+					    <option value="농협">농협</option>
+					    <option value="국민">국민</option>
+					    <option value="신한">신한</option>
+					</select></td>
 			</tr>
 
 			<tr>
@@ -200,6 +201,10 @@
 				let zipcode = document.getElementById('zipcode');
 				let address = document.getElementById('address');
 				let address2 = document.getElementById('address2');
+				let cardType = document.getElementById('cartType');
+				
+				let select = document.getElementById('card').value;
+				cardType.value = select;
 				
 				if( name.value== ""){
 					alert("이름 입력은 필수입니다.")
@@ -230,17 +235,7 @@
 		
 		
 		
-		function changeFn(){
-			let changeTest = document.getElementById('changeTest');
-			let cardTypeInput = document.getElementById('cardTypeInput');
-			cardTypeInput.value = changeTest.options[changeTest.selectedIndex].value;
 		
-		
-			//console.log(result.changeTest);
-			let form = document.getElementById('orderForm'); // form 변수를 사용합니다.
-		    form.action = 'totalOrder_proc1.jsp'; // form에 직접 action을 설정합니다.
-		    form.submit();
-		}
 		
 		
 	</script>
