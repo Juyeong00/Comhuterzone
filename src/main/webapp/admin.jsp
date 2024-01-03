@@ -13,40 +13,66 @@
 }
 
 .title {
-	width: 100%;
+	width: 50%;
 	height: 150px;
 	background-color: #525d76;
 	color: #ffffff;
 	text-align: center;
 	line-height: 145px;
+	cursor: pointer;
+	margin: 0 auto;
+	border: 0;
+}
+     .ftbox {
+	width: 50%;
+	height: 100px;
+	background-color: #525d76;
+	color: #ffffff;
+	text-align: center;
+	line-height: 100px;
+	cursor: pointer;
+	margin: 0 auto;
+	border: 0;
+	display: flex;
+	align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-#topMenu {            
-    height: 30px; 
-    width: 850px; 
-}
-#topMenu ul li {                       
-    list-style: none;          
-    color: white;               
-    background-color: #525d76;  
-    float: left;                
-    line-height: 30px;          
-    vertical-align: middle;     
-    text-align: center;        
-}
-#topMenu .menuLink {                               
-    text-decoration:none;                     
-    color: white;                             
-    display: block;                            
-    width: 150px;                              
-    font-size: 12px;                           
-    font-weight: bold;                         
-    font-family: "Trebuchet MS", Dotum, Arial; 
-}
-#topMenu .menuLink:hover {            
-    color: #ffffff;                   
-    background-color: #000000;    
-}
+                #topMenu {            
+                        height: 200px; 
+                        width: 50%; 
+                        margin: 0 auto;
+	                border: 0;
+	                border: solid 1px #525d76;
+                }
+                #topMenu ul li {                       
+                        list-style: none;          
+                        color: white;               
+                        background-color: #f6f8fa;                 
+                        vertical-align: middle;     
+                        text-align: center;  
+                        line-height: 50px;   
+                        font-size: 14px;
+						margin-bottom: 10px;
+						border: none;
+						border-radius: 5px;
+						padding: 10px;
+                }
+                #topMenu .menuLink {                               
+                        text-decoration:none;                     
+                        color: #000000;                             
+                        display: block;                                                                                
+                        font-weight: bold;  
+                        margin: 0 auto;
+	              		border: 0;                       
+                }
+                #topMenu .menuLink:hover {            
+                        color: #ffffff;                   
+                        background-color: #000000;    
+                }
+        </style>
+
 </style>
 </head>
 <body>
@@ -56,6 +82,18 @@
         <li><a class="menuLink" href="memberList.jsp">회원 목록</a></li>
     </ul>
 </nav>
-
+	<div class="ftbox">
+            <div class="ftbox" onclick="history_go1()">
+                <h2>이전 페이지</h2>
+            </div>
+            <div class="ftbox" onclick="location.href='main.jsp'">
+                <h2>메인으로 돌아가기</h2>
+            </div>
+        </div>
+<script>
+	function history_go1(){
+		history.go(-1);
+	}
+</script>
 </body>
 </html>

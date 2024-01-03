@@ -16,6 +16,31 @@
 	box-sizing: border-box;
 }
 
+.title {
+	width: 50%;
+	height: 150px;
+	background-color: #525d76;
+	color: #ffffff;
+	text-align: center;
+	line-height: 145px;
+	cursor: pointer;
+	margin: 0 auto;
+	border: 0;
+}
+
+    .ftbox {
+	width: 50%;
+	height: 150px;
+	background-color: #525d76;
+	color: #ffffff;
+	text-align: center;
+	line-height: 145px;
+	cursor: pointer;
+	margin: 0 auto;
+	border: 0;
+}
+
+
 .mainmenu {
 	width: 100%;
 	height: auto;	
@@ -53,7 +78,9 @@
 </head>
 <body>
 
-	
+
+	<h2 class="title" onclick="location.href='main.jsp'">2조 쇼핑몰</h2>
+
 	<div class="mainmenu">
 		<ul class="menubar">
 	<%
@@ -96,10 +123,9 @@
 	</div>
 	
 	<%@ include file="navigation.jsp" %>
-	<div class="container">
-	여기 뭐 넣을까요..??
-	</div>
-	<%@ include file="footer.jsp" %>
+
+	
+	<footer class="ftbox" onclick="location.href='main.jsp'"><h2>메인으로 돌아가기</h2></footer>
 	<script>
 
 </script>
