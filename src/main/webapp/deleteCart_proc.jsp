@@ -22,14 +22,14 @@
 	if(result > 0){
 	%>
 	<script>
-		alert('삭제 성공');
+		alert('삭제되었습니다');
 		location.href = 'cartList.jsp';
 	</script>
 	<%
 	} else {
 	%>
 	<script>
-		alert('삭제 실패');
+		alert('삭제하지 못했습니다');
 		history.back();
 	</script>
 	<%	
