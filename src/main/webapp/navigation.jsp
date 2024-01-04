@@ -21,14 +21,15 @@ a{
 .logo{
 	width:100%;
 	height:70px;
-	font-size:30px;
+	font-size:45px;
+	font-weight : bold;
 	display:flex;
 	justify-content: center;
 }
 .nav {
 	height: 50px;
 	display: flex;
-	background-color: #525d76;
+	background-color: black;
 }
 
 .category {
@@ -113,7 +114,7 @@ a{
 <body>
  
 	<div class="header">
-		<div class="logo"><a href="./main.jsp">2조이름</a></div>
+		<div class="logo"><a href="./main.jsp">COMHUTERZONE</a></div>
 		
 	</div>
 	<div class="nav">

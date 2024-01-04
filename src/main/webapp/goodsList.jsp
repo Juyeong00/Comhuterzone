@@ -60,6 +60,16 @@
 	GoodsDTO goods = goodsDAO.findCategoryById(intId);
 	%>
 	
+	<%
+	if(goods == null){
+	%>
+	<script>
+		alert('제품 정보가 없습니다');
+		location.href="main.jsp";
+		</script>
+	<%
+	}else{
+	%>
 	<div class="container">
 	
 	<h1 style="margin-top:10px;"><%=goods.getName() %></h1>
@@ -94,7 +104,6 @@
 	
 	</form>
 	</div>
-	<%@ include file="footer.jsp" %>
 	<script>
 
   		let btnArray = Array.from(document.getElementsByClassName('buyBtn'));
@@ -129,7 +138,7 @@
 			  		alert('남아있는 수량보다 많이 선택하였습니다');
 			  		event.preventDefault();
 			  	}else{
-				  	form.action = 'totalOrder1.jsp';
+				  	form.action = 'buyGoods.jsp';
 				  	form.submit();  	
 			  	}
 			  	
@@ -166,14 +175,16 @@
 			  		event.preventDefault();
 			  	}else{
 				  	form.action = 'addCart.jsp';
-				  	form.submit();  	
+				  	form.submit();
 			  	}
 			  	
 			});
 		});
   
 	</script>
-
+	<%
+	}
+	%>
 
 </body>
 </html>

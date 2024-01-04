@@ -39,6 +39,10 @@
     background-color: #ddd;
     vertical-align: top;
 }
+
+.mypage, .logout, .cart, .admin, .mypage, .logout, .login, .signup{
+	font-weight : bold;
+}
 </style>
 </head>
 <body>

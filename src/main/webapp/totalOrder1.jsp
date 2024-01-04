@@ -14,14 +14,33 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+
+.container{
+	display: flex;
+	flex-direction: column;
+	
+}
+
+</style>
+
 </head>
 <body>
+	<%@ include file="homewrap.jsp" %>
+	<%@ include file="navigation.jsp" %>
 	
 	
 	
 	<%
+	request.setCharacterEncoding("UTF-8");
 	String id = request.getParameter("id"); //personInfo.jsp
 	String count = request.getParameter("count");
+	String orderName = request.getParameter("orderName");
+	String tel2 = request.getParameter("tel2");
+	String zipcode = request.getParameter("zipcode");
+	String address = request.getParameter("address");
+	String address2 = request.getParameter("address2");
+	String card = request.getParameter("card");
 	
 	
 	//System.out.println(id);
@@ -55,22 +74,43 @@
 	GoodsDTO goods = goodsDAO.findDeskDetailById(intId);
 	GoodsDTO go = goodsDAO.findDeskDetailById2(intId);
 	
-	SignUpDTO loggedInMember = (SignUpDTO)session.getAttribute("loggedInMember");
+	
 	
 	%>
 	
 	
-	
-	<form id="orderForm" action="orderedGoods.jsp" method="post" >
+	<%
+	if(loggedInMember == null){
+	%>
+	<!--<h2>해당 사용자 정보가 없습니다.</h2>  -->
+	<script>
+		alert('로그인 후 이용가능합니다');
+		location.href="login.jsp";
+		</script>
+	<%
+	}else{
+	%>
+	<form id="orderForm" action="totalOrder_proc1.jsp" method="post" >
 	<input type= "hidden" name="id" value="<%= goods.getId() %>">
 	<input type= "hidden" name="name" value="<%= go.getName() %>">
+	<input type= "hidden" name="userId" value="<%= loggedInMember.getId() %>">
+	<input type= "hidden" name="tel2" value="<%= loggedInMember.getPhone() %>">
 	<input type= "hidden" name="count" value="<%=intCount %>">
-	
-	
+	<input type= "hidden" name="orderName" value="<%=loggedInMember.getName() %>">
+	<input type= "hidden" name="zipcode" value="<%=loggedInMember.getZipcode() %>">
+	<input type= "hidden" name="address" value="<%=loggedInMember.getAddress() %>">
+	<input type= "hidden" name="address2" value="<%=loggedInMember.getAddress2() %>">
+	<input type= "hidden" name="card" id="cardkey" value="">
+	<input type= "hidden" name="delivery" id="deliverykey" value="">
+	<input type= "hidden" name="totalAmountInput" value="<%=goods.getPrice() * intCount %>">
+	 
+	 
+	</form>
+	<div class="container">
 		<h2>주문</h2>
 			<hr>
 			
-			<form>
+			<form class="order">
 				<input type="radio" name="info" value="회원정보" onClick="info_copy_chk(this.checked)" >
 				<label for ="회원정보">회원정보와 동일</label>
 				<input type="radio" id="info" name="info" value="새로운" onClick="info_chk(this.checked)" >
@@ -100,20 +140,16 @@
 			
 			<tr>
 				<td align="center">배송요청 사항</td>
-				<td><select name="Delivery" style="width: 200px;">
-						<option>빠른 배송 부탁드립니다.</option>
-						<option>문 앞에 놓아주세요.</option>
-						<option>경비실에 맡겨주세요.</option></td>
+				<td><select name="delivery" id="delivery"style="width: 200px;">
+						<option value="빠른 배송 부탁드립니다.">빠른 배송 부탁드립니다.</option>
+						<option value="문 앞에 놓아주세요.">문 앞에 놓아주세요.</option>
+						<option value="경비실에 맡겨주세요.">경비실에 맡겨주세요.</option>
+						</select></td>
 			</tr>
 
 			<tr>
 				<td align="center">핸드폰</td>
-				<td><select name="tel1" style="width: 60px;">
-						<option value="010">010</option>
-						<option value="011">011</option>
-						<option value="017">017</option>
-				</select> - <input type="text" name="tel2" size="5"> - 
-				<input type="text" name="tel3" size="5"></td>
+				<td><input type="text" name="tel2"  size="10px" value= "<%=loggedInMember.getPhone() %>"></td>
 			</tr>
 			<tr>
 				<td align="center">주소</td>
@@ -124,11 +160,13 @@
 			</tr>
 			<tr>
 				<td align="center">결제카드</td>
-				<td><select name="card" style="width: 60px;">
+				<td><select name="cardType" id="card"  style="width: 60px;">
 						<option value="삼성">삼성</option>
 						<option value="농협">농협</option>
 						<option value="국민">국민</option>
-						<option value="신한">신한</option></td>
+						<option value="신한">신한</option>
+					</select>
+				</td>
 			</tr>
 
 			<tr>
@@ -148,7 +186,7 @@
 				
 		</table>
 	</form>
-
+</div>
 	<script>
 	
 	
@@ -178,13 +216,39 @@
 		function button1() {
 			if (confirm("주문하시겠습니까?")) {
 				
+				let form = document.getElementById('orderForm');		
+				let name = document.getElementById('ordername');
+				let zipcode = document.getElementById('zipcode');
+				let address = document.getElementById('address');
+				let address2 = document.getElementById('address2');
+				let cardkey = document.getElementById('cardkey');
+				let deliverykey = document.getElementById('deliverykey');
 				
-				let form = document.getElementById('orderForm');
-				
-				form.action = 'totalOrder_proc.jsp';	
-				form.submit();
-				
+				let selectedCardType = document.getElementById('card').value;
+		        cardkey.value = selectedCardType;
+		        
+		        let deliveryMType = document.getElementById('delivery').value;
+		        deliverykey.value = deliveryMType;
+		        
+		        
+
+				if( name.value== ""){
+					alert("이름 입력은 필수입니다.")
+				} else if (zipcode.value == ""){
+					alert("우편번호 입력은 필수입니다.")
+				} else if (address.value == ""){
+					alert("주소 입력은 필수입니다.")
+				} else if (address2.value == ""){
+					alert("상세주소 입력은 필수입니다.")
+				} else {
+					let form = document.getElementById('orderForm');
+					alert("주문이 완료되었습니다.")		
+							form.action = 'totalOrder_proc1.jsp';	
+							form.submit();
+				}
+							
 			}
+				
 		}
 
 		function button2() {
@@ -196,11 +260,17 @@
 		}
 		
 		
+		
+		
+		
+		
 	</script>
 
 
 
-
+	<%
+	}
+	%>
 
 
 </body>
