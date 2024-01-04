@@ -79,7 +79,17 @@
 	%>
 	
 	
-	
+	<%
+	if(loggedInMember == null){
+	%>
+	<!--<h2>해당 사용자 정보가 없습니다.</h2>  -->
+	<script>
+		alert('로그인 후 이용가능합니다');
+		location.href="login.jsp";
+		</script>
+	<%
+	}else{
+	%>
 	<form id="orderForm" action="totalOrder_proc1.jsp" method="post" >
 	<input type= "hidden" name="id" value="<%= goods.getId() %>">
 	<input type= "hidden" name="name" value="<%= go.getName() %>">
@@ -258,7 +268,9 @@
 
 
 
-
+	<%
+	}
+	%>
 
 
 </body>

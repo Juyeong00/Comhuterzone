@@ -28,13 +28,7 @@
 	String count = request.getParameter("count");
 	String totalAmountInput = request.getParameter("totalAmountInput");
 	
-	
-	
-	if(id == null ){
-		System.out.println("없음");
-	}
-	
-	
+
 	int intId = 0;
 	try{
 		intId = Integer.parseInt(id); //예외

@@ -60,6 +60,16 @@
 	GoodsDTO goods = goodsDAO.findCategoryById(intId);
 	%>
 	
+	<%
+	if(goods == null){
+	%>
+	<script>
+		alert('제품 정보가 없습니다');
+		location.href="main.jsp";
+		</script>
+	<%
+	}else{
+	%>
 	<div class="container">
 	
 	<h1 style="margin-top:10px;"><%=goods.getName() %></h1>
@@ -172,7 +182,9 @@
 		});
   
 	</script>
-
+	<%
+	}
+	%>
 
 </body>
 </html>
