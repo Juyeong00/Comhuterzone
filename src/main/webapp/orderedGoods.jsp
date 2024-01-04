@@ -101,6 +101,11 @@
 				<td><%=totalAmountInput %></td>
 			</tr>
 			
+			<tr>
+				<td align="center">처리상태</td>
+				
+			</tr>
+			
 			
 		</table>
 	</form>

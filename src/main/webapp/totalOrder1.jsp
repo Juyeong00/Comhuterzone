@@ -143,10 +143,10 @@
 			</tr>
 			<tr>
 				<td align="center">주소</td>
-				<td><input type="text" id="zipcode" name="zipcode" size="5" value= "<%=loggedInMember.getZipcode() %>" >
+				<td><input type="text" id="zipcode" name="zipcode" placeholder="우편번호" size="5" value= "<%=loggedInMember.getZipcode() %>" >
 					<input type="button"value="우편번호검색"><br> 
-				 	<input type="text" id="address" name="address" size="50" value="<%=loggedInMember.getAddress() %>" ><br>
-					<input type="text" id="address2"name="address2" size="50" value="<%=loggedInMember.getAddress2() %>"></td>
+				 	<input type="text" id="address" name="address" placeholder="도로명주소" size="50" value="<%=loggedInMember.getAddress() %>" ><br>
+					<input type="text" id="address2"name="address2" placeholder="상세주소" size="50" value="<%=loggedInMember.getAddress2() %>"></td>
 			</tr>
 			<tr>
 				<td align="center">결제카드</td>
