@@ -8,6 +8,7 @@ public class CartDTO {
 	int goods_id;
 	int quantity;
 	String content;
+	int goodsQuan;
 	
 	public CartDTO(String name, int price, int quantity, String content, int goods_id) {
 		super();
@@ -18,15 +19,24 @@ public class CartDTO {
 		this.goods_id = goods_id;
 	}
 
-	public CartDTO(int goods_id, String name, int price, int quantity, String content ) {
+	public CartDTO(int goods_id, String name, int price, int quantity, String content, int gQuan ) {
 		super();
 		this.name = name;
 		this.goods_id = goods_id;
 		this.price = price;
 		this.quantity = quantity;
 		this.content = content;
+		this.goodsQuan = gQuan;
 	}
 
+
+	public int getGoodsQuan() {
+		return goodsQuan;
+	}
+
+	public void setGoodsQuan(int goodsQuan) {
+		this.goodsQuan = goodsQuan;
+	}
 
 	public String getName() {
 		return name;

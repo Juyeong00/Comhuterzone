@@ -19,11 +19,16 @@ public class CartDAO {
 	public List<CartDTO> findCartList(String user_id) {
 
 		conn = DBConnectionManager.connectDB();
-		String sql = " SELECT c.goods_id as goods_id, g.name as name, g.price * SUM(c.quantity) AS price, SUM(c.quantity) AS quantity, g.content as content "
+		String sql = " SELECT c.goods_id as goods_id, "
+				+ "       g.name as name, "
+				+ "       g.price * SUM(c.quantity) AS price, "
+				+ "       SUM(c.quantity) AS quantity, "
+				+ "       g.content as content, "
+				+ "       SUM(g.quantity) as gQuan "
 				+ " FROM goods g, cart c "
 				+ " WHERE g.id = c.goods_id "
-				+ " AND user_id = ? "
-				+ " GROUP BY c.goods_id, g.name, g.price, g.content ";
+				+ "      AND user_id = ? "
+				+ " GROUP BY c.goods_id, g.name, g.price, g.content, g.quantity ";
 
 		List<CartDTO> cartList = null;
 
@@ -36,7 +41,7 @@ public class CartDAO {
 
 			while(rs.next()) {
 
-				CartDTO cart = new CartDTO(rs.getInt("goods_id"), rs.getString("name"), rs.getInt("price"), rs.getInt("quantity"), rs.getString("content"));
+				CartDTO cart = new CartDTO(rs.getInt("goods_id"), rs.getString("name"), rs.getInt("price"), rs.getInt("quantity"), rs.getString("content"), rs.getInt("gQuan"));
 				cartList.add(cart);
 
 			}

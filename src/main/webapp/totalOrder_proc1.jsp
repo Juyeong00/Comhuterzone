@@ -1,3 +1,4 @@
+<%@page import="db.dao.CartDAO"%>
 <%@page import="db.dto.SignUpDTO"%>
 <%@page import="db.dto.GoodsDTO"%>
 <%@page import="db.dao.GoodsDAO"%>
@@ -50,13 +51,13 @@
 	// TotalOrderDAO를 사용하여 주문 정보 저장
 	TotalOrderDAO totalOrderDAO = new TotalOrderDAO();
 	GoodsDAO goodsDAO = new GoodsDAO();
+	CartDAO cartDAO = new CartDAO();
 	
 	int result = totalOrderDAO.saveTotalOrder(orderName, userId, delivery, tel2, zipcode1, address, address2, card, totalAmountInput1 );
 	int updateQuantity = goodsDAO.modifyGoodsQuantity(intCount, intId);
+	int deleteCart = cartDAO.removeCartById(intId);
 	
 	if (result > 0) {
-		System.out.println(result);
-		System.out.println(updateQuantity);
 	%>
 	
 	<form id="orderGoodsForm" action="orderedGoods.jsp" method="post">
