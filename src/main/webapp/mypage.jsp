@@ -130,9 +130,9 @@ body {
         <p>상세주소: <input class="text-field" type="text" id="input_address2" name="address2" value="<%= loggedInMember.getAddress2() %>"></p>
         <input type="hidden" id="input_birthday" name="birthday" value="<%= loggedInMember.getBirthday() %>">
         <input type="hidden" id="input_indate" name="indate" value="<%= loggedInMember.getIndate() %>">
-        <button class="modify-btn" id="modifyBtn" type="button">수정하기</button>
+        <button class="modify-btn" id="modifyBtn" type="button">저장</button>
         <button class="logout-btn" id="logoutBtn" type="button">로그아웃</button>
-        <button class="delete-btn" id="deleteBtn" type="button">탈퇴하기</button>
+        <button class="delete-btn" id="deleteBtn" type="button">서비스 탈퇴</button>
        </form>
        </div>
        </div>

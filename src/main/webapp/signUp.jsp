@@ -104,7 +104,7 @@
 	</form>
 	</div>
 	</div>
-	
+		
 		<div class="ftbox">
             <div class="ftbox" onclick="history_go1()">
                 <h2>이전 페이지</h2>
