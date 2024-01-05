@@ -4,112 +4,127 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import db.dto.GoodsDTO;
 import db.dto.TotalOrderDTO;
 import db.util.DBConnectionManager;
+import db.util.MyConvertDateUtil;
 
 public class TotalOrderDAO {
 
-    Connection conn;
-    PreparedStatement psmt;
-    ResultSet rs;
+	Connection conn;
+	PreparedStatement psmt;
+	ResultSet rs;
 
-    // 주문 목록 조회
-    // public List<TotalOrderDTO> findTotalOrderList() {
-    //     conn = DBConnectionManager.connectDB();
-    //     String sql = "SELECT * FROM total_order";
-    //     List<TotalOrderDTO> totalOrderList = null;
+	// 주문 목록 조회
+	public TotalOrderDTO findTotalOrderList(String name, int amount) {
+		
+		conn = DBConnectionManager.connectDB();
+		
+		String sql = " SELECT order_id, order_date, "
+				+ " user_name, user_id, delivery_request, phone_num, member_add1,  member_add2, "
+				+ " member_add3, payment_card, total_amount, processing  FROM total_order "
+				+ " WHERE user_id = ? AND total_amount = ? ";
+		
+		TotalOrderDTO totalOrder = null;
 
-    //     try {
-    //         psmt = conn.prepareStatement(sql);
-    //         rs = psmt.executeQuery();
-    //         totalOrderList = new ArrayList<TotalOrderDTO>();
+		try {
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setString(1, name);
+			psmt.setInt(2, amount);
+			rs = psmt.executeQuery();
+			
 
-    //         while (rs.next()) {
-    //             TotalOrderDTO totalOrderDTO = new TotalOrderDTO(
-    //                     rs.getString("orderDate"),
-    //                     rs.getInt("orderId"),
-    //                     rs.getString("userName"),
-    //                     rs.getString("userId"),
-    //                     rs.getString("deliveryRequest"),
-    //                     rs.getString("phoneNum"),
-    //                     rs.getInt("memberAdd1"),
-    //                     rs.getString("memberAdd2"),
-    //                     rs.getString("memberAdd3"),
-    //                     rs.getString("paymentCard"),
-    //                     rs.getInt("totalAmount")
-    //             );
+			if(rs.next()) {
+				totalOrder = new TotalOrderDTO(
+						rs.getInt("order_id"),
+						rs.getString("order_date"),
+						rs.getString("user_name"),
+						rs.getString("user_id"),
+						rs.getString("delivery_request"),
+						rs.getString("phone_num"),
+						rs.getInt("member_add1"),
+						rs.getString("member_add2"),
+						rs.getString("member_add3"),
+						rs.getString("payment_card"),
+						rs.getInt("total_amount"),
+						rs.getString("processing")
+						);
 
-    //             totalOrderList.add(totalOrderDTO);
-    //         }
-    //     } catch (SQLException e) {
-    //         e.printStackTrace();
-    //     } finally {
-    //         DBConnectionManager.closeDB(conn, psmt, rs);
-    //     }
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
 
-    //     return totalOrderList;
-    // }
+		return totalOrder;
+	}
 
-    // 새로운 주문 저장
-    public int saveTotalOrder(String user_name, String userId, String deliveryRequest, String phoneNum,
-            int memberAdd1, String memberAdd2, String memberAdd3, String paymentCard, int totalAmount) {
-        conn = DBConnectionManager.connectDB();
+	// 새로운 주문 저장
+	public int saveTotalOrder(String user_name, String userId, String deliveryRequest, String phoneNum,
+			int memberAdd1, String memberAdd2, String memberAdd3, String paymentCard, int totalAmount) {
+		conn = DBConnectionManager.connectDB();
+		
+		String sql = "INSERT INTO total_order " +
+				"(order_date, order_id, user_name, user_id, delivery_request, phone_num, " +
+				"member_add1, member_add2, member_add3, payment_card, total_amount, processing) " +
+				"VALUES (SYSDATE , order_id_sq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, '주문완료')";
 
-        String sql = "INSERT INTO total_order " +
-        	            "(order_date, order_id, user_name, user_id, delivery_request, phone_num, " +
-        	            "member_add1, member_add2, member_add3, payment_card, total_amount) " +
-        			"VALUES (SYSDATE, order_id_sq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		int result = 0;
 
-        int result = 0;
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, user_name);
+			psmt.setString(2, userId);
+			psmt.setString(3, deliveryRequest);
+			psmt.setString(4, phoneNum);
+			psmt.setInt(5, memberAdd1);
+			psmt.setString(6, memberAdd2);
+			psmt.setString(7, memberAdd3);
+			psmt.setString(8, paymentCard);
+			psmt.setInt(9, totalAmount);
 
-        try {
-            psmt = conn.prepareStatement(sql);
+			result = psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
 
-            psmt.setString(1, user_name);
-            psmt.setString(2, userId);
-            psmt.setString(3, deliveryRequest);
-            psmt.setString(4, phoneNum);
-            psmt.setInt(5, memberAdd1);
-            psmt.setString(6, memberAdd2);
-            psmt.setString(7, memberAdd3);
-            psmt.setString(8, paymentCard);
-            psmt.setInt(9, totalAmount);
+		return result;
+	}
+	
+	public int modifyState(String state, int orderId) { //제품 수정 sql
 
-            result = psmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            DBConnectionManager.closeDB(conn, psmt, rs);
-        }
+		conn = DBConnectionManager.connectDB();
 
-        return result;
-    }
+		String sql = " UPDATE total_order "
+				   + " SET processing = ? "
+				   + " WHERE order_id = ? ";
+		int result = 0;
 
-    // 주문번호 생성
-    public String generateOrderNumber() {
-        Connection conn = null;
-        PreparedStatement psmt = null;
-        ResultSet rs = null;
-        String orderNumber = null;
+		try {
+			psmt = conn.prepareStatement(sql);
 
-        try {
-            conn = DBConnectionManager.connectDB();
-            String sql = "SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(ORDER_ID_SQ.NEXTVAL, 1, '0') FROM DUAL";
-            psmt = conn.prepareStatement(sql);
-            rs = psmt.executeQuery();
+			psmt.setString(1, state);
+			psmt.setInt(2, orderId);
 
-            if (rs.next()) {
-                orderNumber = rs.getString(1);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            DBConnectionManager.closeDB(conn, psmt, rs);
-        }
+			result = psmt.executeUpdate();
 
-        return orderNumber;
-    }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return result;
+	}
+
+
 }

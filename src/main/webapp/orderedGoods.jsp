@@ -1,3 +1,4 @@
+<%@page import="db.dto.TotalOrderDTO"%>
 <%@ page import="db.dto.GoodsDTO"%>
 <%@ page import="db.dao.GoodsDAO"%>
 <%@ page import="db.dao.TotalOrderDAO"%>
@@ -23,20 +24,16 @@
 
 	<%
 	request.setCharacterEncoding("UTF-8");
-	String id = request.getParameter("id"); //personInfo.jsp
+
 	String name = request.getParameter("name");
 	String count = request.getParameter("count");
 	String totalAmountInput = request.getParameter("totalAmountInput");
-	
 
-	int intId = 0;
-	try{
-		intId = Integer.parseInt(id); //예외
-	} catch (Exception e){
-		e.printStackTrace(); //예외 발생 기록
-		intId = 0;
-	}
 	
+	System.out.println(loggedInMember.getId());
+	System.out.println(name);
+	System.out.println(totalAmountInput);
+
 	int intCount = 0;
 	try{
 		intCount = Integer.parseInt(count); //예외
@@ -45,19 +42,9 @@
 		intCount = 0;
 	}
 	
-	GoodsDAO goodsDAO = new GoodsDAO(); 
-	GoodsDTO goods = goodsDAO.findDeskDetailById(intId);
-	GoodsDTO go = goodsDAO.findDeskDetailById2(intId);
-	
-	
-	
-	
+	int inttotalAmountInput = Integer.parseInt(totalAmountInput);
 	TotalOrderDAO totalOrderDAO = new TotalOrderDAO();
-	String orderNumber = totalOrderDAO.generateOrderNumber();
-	
-	SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD HH:mm:ss");
-	String orderDate = dateFormat.format(new Date());
-	
+	TotalOrderDTO totalorder= totalOrderDAO.findTotalOrderList(loggedInMember.getId(),inttotalAmountInput );
 	%>
 
 	
@@ -71,13 +58,13 @@
 
 			<tr>
 				<td align="center">주문번호</td>
-				<td><%=orderNumber %></td>
+				<td><%=totalorder.getOrderId() %></td>
 
 			</tr>
 
 			<tr>
 				<td align="center" width="80">주문날짜</td>
-				<td><%=orderDate %></td>
+				<td><%=totalorder.getOrderDate()%></td>
 
 			</tr>
 			<tr>
@@ -96,10 +83,9 @@
 			</tr>
 			
 			<tr>
-				<td align="center">처리상태</td>
-				
+				<td align="center">주문상태</td>
+				<td><%=totalorder.getProcessing() %></td>
 			</tr>
-			
 			
 		</table>
 	</form>

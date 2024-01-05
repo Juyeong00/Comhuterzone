@@ -82,6 +82,7 @@
     <ul>
         <li><a class="menuLink" href="memberList.jsp">회원 목록</a></li>
         <li><a class="menuLink" href="admin_goodsList.jsp">제품 목록</a></li>
+        <li><a class="menuLink" href="admin_processStatus.jsp">처리상태 수정</a></li>
     </ul>
 </nav>
 	<div class="ftbox">

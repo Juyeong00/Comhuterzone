@@ -29,12 +29,13 @@
 	String totalAmountInput = request.getParameter("totalAmountInput");
 	String delivery = request.getParameter("delivery");
 	String changeTest = request.getParameter("changeTest");
+	String date = request.getParameter("date");
 	
 	int intCount = Integer.parseInt(count);
 	int zipcode1 = Integer.parseInt(zipcode);
 	int totalAmountInput1 = Integer.parseInt(totalAmountInput);
-	// 입력값을 저장할 DTO 생성
 
+	// 입력값을 저장할 DTO 생성
 	
 	// GoodsDAO를 사용하여 상품 정보 조회
 	int intId = 0;
@@ -61,9 +62,11 @@
 	%>
 	
 	<form id="orderGoodsForm" action="orderedGoods.jsp" method="post">
+	<input type= "hidden" name="id" value="<%=loggedInMember.getId()%>">
 	<input type= "hidden" name="name" value="<%=name%>">
 	<input type= "hidden" name="count" value="<%=count%>">
 	<input type= "hidden" name="totalAmountInput" value=<%=totalAmountInput%>>
+	<input type="hidden" name="date" value="<%=date%>">
 	</form>
 	
 	
