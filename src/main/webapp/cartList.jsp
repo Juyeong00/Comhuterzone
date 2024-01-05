@@ -48,8 +48,7 @@
 	overflow:visible;
 	cursor:pointer;
 }
-#empcart{
-	display:none;
+.empcart{
 	font-size: 25px;
 	margin-top: 130px;
 }
@@ -76,36 +75,17 @@
 	CartDAO cartDAO = new CartDAO();
 	GoodsDAO goodsDAO = new GoodsDAO();
 	List<CartDTO> cartList = cartDAO.findCartList(loggedInMember.getId());
-	
 	%>
-	
-	<%
-	boolean result = true;
-	if(cartList.isEmpty()){
-		System.out.println("비었음");
-		result = true;
-	}else{
-		System.out.println("들어있음");
-		result = false;
-	}
-	%>
-	<input type="hidden" id="isEmpty" value="<%=result %>"/>
-	
+
 	<div class="container">
 	<h1 style="margin-top:10px;">장바구니</h1>
-	<div id="empcart">장바구니가 비었습니다</div>
-	
-	<script>
-	let isEmpty = document.getElementById('isEmpty').value;
-	console.log(isEmpty);
-	
-	if(isEmpty === 'true'){
-		document.getElementById('empcart').style.display ='block';
-	} else{
-		document.getElementById('empcart').style.display ='none';
-	}
-
-	</script>
+	<% 
+	if(cartList.isEmpty()){
+	%>
+    <div class="empcart">장바구니가 비었습니다</div>
+    <%
+    }else{
+    %>
 	
 	<%
 	for (CartDTO cart : cartList) {
@@ -182,6 +162,9 @@
 	    });
 	});
 	</script>
+	<%
+	}
+	%>
 	<%
 	}
 	%>

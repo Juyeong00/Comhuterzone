@@ -17,24 +17,24 @@
 }
 
 .title {
-	width: 50%;
-	height: 150px;
+	width: 100%;
+	height: 100px;
 	background-color: #525d76;
 	color: #ffffff;
 	text-align: center;
-	line-height: 145px;
+	line-height: 100px;
 	cursor: pointer;
 	margin: 0 auto;
 	border: 0;
 }
 
     .ftbox {
-	width: 50%;
-	height: 150px;
+	width: 100%;
+	height: 100px;
 	background-color: #525d76;
 	color: #ffffff;
 	text-align: center;
-	line-height: 145px;
+	line-height: 100px;
 	cursor: pointer;
 	margin: 0 auto;
 	border: 0;
@@ -77,6 +77,28 @@
 
 .mypage, .logout, .cart, .admin, .mypage, .logout, .login, .signup{
 	font-weight : bold;
+}
+.search{
+    margin-top:120px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    height:50px;
+}
+.fa-search{
+    display:flex;
+    width: 500px;
+    height: 50px;
+    background-color:white;
+    border:2px solid black;
+    border-radius: 40px;
+    padding-left:15px;
+    font-size:17px;
+    color:#888888;
+    outline:none;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.21), 0 2px 2px rgba(0,0,0,0.17);
 }
 </style>
 </head>
@@ -129,10 +151,31 @@
 	
 	<%@ include file="navigation.jsp" %>
 
-	
+	<div class="search">
+        <form id="searchForm" action="search.jsp">
+		    <input class="fa-search" type="text" placeholder=" 검색" onkeydown="onKeydown(event)" value="">
+		    <input type="hidden" id="goodsName" name="name" value="">
+		</form>
+    </div>
 	
 	<script>
+	function onKeydown(e) {
+	    if (e.keyCode === 13) {
+	        doSearch();
+	    }
+	}
 
+    function doSearch() {
+        let inputName = document.querySelector('.fa-search').value;
+        let goodsName = document.getElementById('goodsName');
+        goodsName.value = inputName;
+
+        console.log('Input Value:', inputName);
+        console.log('Form Data:', goodsName.value);
+
+        let form = document.getElementById('searchForm');
+        form.submit();
+    }
 </script>
 
 </body>

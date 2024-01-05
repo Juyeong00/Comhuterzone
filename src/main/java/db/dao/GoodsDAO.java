@@ -327,5 +327,44 @@ public class GoodsDAO {
 
 		return result;
 	}
+	
+	public List<GoodsDTO> findGoodsListByName(String namein) {
+
+		conn = DBConnectionManager.connectDB();
+		String sql = " SELECT * FROM goods WHERE LOWER(name) "
+				   + " LIKE LOWER(?) ORDER BY id ";
+
+		List<GoodsDTO> goodsList = null;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, "%" + namein + "%");
+			rs = psmt.executeQuery();
+
+			goodsList = new ArrayList<GoodsDTO>();
+
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				int price = rs.getInt("price");
+				int quantity = rs.getInt("quantity");
+				String content = rs.getString("content");
+				LocalDateTime regist_date
+				= MyConvertDateUtil.convertTimestampToLocalDateTime(rs.getTimestamp("regist_date"));
+				int ca_id = rs.getInt("ca_id");
+
+				GoodsDTO goods = new GoodsDTO(id, name, price, quantity, content, regist_date, ca_id);
+				goodsList.add(goods);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return goodsList;
+	}
 
 }

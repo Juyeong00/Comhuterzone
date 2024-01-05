@@ -14,14 +14,15 @@
 
 .title {
 	width: 50%;
-	height: 150px;
+	height: 100px;
 	background-color: #525d76;
 	color: #ffffff;
 	text-align: center;
-	line-height: 145px;
+	line-height: 100px;
 	cursor: pointer;
 	margin: 0 auto;
 	border: 0;
+	
 }
      .ftbox {
 	width: 50%;
@@ -77,7 +78,9 @@
 
 </head>
 <body>
+
     <h2 class="title">관리자 페이지</h2>
+
 <nav id="topMenu">
     <ul>
         <li><a class="menuLink" href="memberList.jsp">회원 목록</a></li>
