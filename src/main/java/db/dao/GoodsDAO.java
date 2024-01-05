@@ -328,10 +328,11 @@ public class GoodsDAO {
 		return result;
 	}
 	
-	public List<GoodsDTO> findGoodsListByName(String namein) { //모든 제품을 출력해주는 sql
+	public List<GoodsDTO> findGoodsListByName(String namein) {
 
 		conn = DBConnectionManager.connectDB();
-		String sql = " SELECT * FROM goods WHERE LOWER(name) LIKE LOWER(?) ORDER BY id DESC ";
+		String sql = " SELECT * FROM goods WHERE LOWER(name) "
+				   + " LIKE LOWER(?) ORDER BY id ";
 
 		List<GoodsDTO> goodsList = null;
 
