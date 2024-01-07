@@ -100,7 +100,7 @@ a{
 			value="<%=goodsInfo.getQuantity() %>">
 		</div>
 		<div class="content">
-		<label class="laname">내용</label><input class="inputcss" type="text" id="input_content" name="content"
+		<label class="laname">설명</label><input class="inputcss" type="text" id="input_content" name="content"
 			value="<%=goodsInfo.getContent() %>">
 		</div>
 		<div class="content">
@@ -115,12 +115,22 @@ a{
 	
 	<script>
 	document.getElementById('modifyBtn').addEventListener('click', ()=> {
-    	if(confirm('수정 하시겠습니까?')){
-		
-    		let form = document.getElementById('modigoodsForm');
-    		form.action = 'admin_modifyGoods_proc.jsp';
-    		form.submit();
-    	}
+		let form = document.getElementById('modigoodsForm');
+    	
+   		if(document.getElementById('input_name').value == ""){
+   			alert('이름을 비워둘 수 없습니다');
+   		}else if(document.getElementById('input_price').value == ""){
+   			alert('가격을 비워둘 수 없습니다');
+   		}else if(document.getElementById('input_quantity').value == ""){
+   			alert('수량을 비워둘 수 없습니다');
+   		}else if(document.getElementById('input_content').value == ""){
+   			alert('내용을 비워둘 수 없습니다');
+   		}else if(document.getElementById('input_caId').value == ""){
+   			alert('카테고리ID를 비워둘 수 없습니다');
+   		}else{
+   			form.action = 'admin_modifyGoods_proc.jsp';
+   			form.submit();
+   		}	
 	});
 	</script>
 </body>

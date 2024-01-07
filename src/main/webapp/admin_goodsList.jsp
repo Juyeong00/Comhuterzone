@@ -1,3 +1,5 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDateTime"%>
 <%@page import="java.util.List"%>
 <%@page import="db.dto.GoodsDTO"%>
 <%@page import="db.dao.GoodsDAO"%>
@@ -110,14 +112,16 @@ a{
 			<div class="pro-name">이름</div>
 			<div class="pro-price">가격</div>
 			<div class="pro-quan">수량</div>
-			<div class="pro-con">내용</div>
+			<div class="pro-con">설명</div>
 			<div class="pro-date">등록일자</div>
 			<div class="pro-caId">카테고리ID</div>
 			<div class="pro-setting">설정</div>
 		</div>
 	
 	<% 
-	for(GoodsDTO goods : goodsList){		
+	for(GoodsDTO goods : goodsList){
+		LocalDateTime regist_date = goods.getRegist_date();
+        String date = regist_date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 	%>
 	<div class="pro-content">
 		<div class="pro-id"><%=goods.getId()%></div>
@@ -125,7 +129,7 @@ a{
 		<div class="pro-price"><%=goods.getPrice()%></div>
 		<div class="pro-quan"><%=goods.getQuantity()%></div>
 		<div class="pro-con"><%=goods.getContent()%></div>
-		<div class="pro-date"><%=goods.getRegist_date()%></div>
+		<div class="pro-date"><%=date%></div>
 		<div class="pro-caId"><%=goods.getCa_id()%></div>
 		<div class="pro-setting">
 		<div class="set">

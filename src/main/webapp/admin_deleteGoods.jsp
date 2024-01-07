@@ -22,14 +22,14 @@
 	if(result > 0){
 	%>
 	<script>
-		alert('삭제 성공');
+		alert('삭제하였습니다');
 		location.href = 'admin_goodsList.jsp';
 	</script>
 	<%
 	} else {
 	%>
 	<script>
-		alert('삭제 실패');
+		alert('삭제에 실패하였습니다');
 		history.back();
 	</script>
 	<%	

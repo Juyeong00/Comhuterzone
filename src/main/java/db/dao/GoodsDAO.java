@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import db.dto.GoodsDTO;
@@ -61,8 +62,8 @@ public class GoodsDAO {
 		conn = DBConnectionManager.connectDB();
 
 		String sql = " SELECT ca_name "
-				   + " FROM category c "
-				   + " WHERE ca_id = ? ";
+				+ " FROM category c "
+				+ " WHERE ca_id = ? ";
 
 		GoodsDTO desk = null;
 
@@ -91,8 +92,8 @@ public class GoodsDAO {
 		conn = DBConnectionManager.connectDB();
 
 		String sql = " SELECT id, name, content, price "
-				   + " FROM goods "
-				   + " WHERE id = ? ";
+				+ " FROM goods "
+				+ " WHERE id = ? ";
 
 		GoodsDTO desk = null;
 
@@ -121,8 +122,8 @@ public class GoodsDAO {
 		conn = DBConnectionManager.connectDB();
 
 		String sql = " SELECT id, name, price, content, quantity "
-				   + " FROM goods "
-				   + " WHERE id = ? ";
+				+ " FROM goods "
+				+ " WHERE id = ? ";
 
 		GoodsDTO desk = null;
 
@@ -148,7 +149,7 @@ public class GoodsDAO {
 	public List<GoodsDTO> findGoodsList() { //모든 제품을 출력해주는 sql
 
 		conn = DBConnectionManager.connectDB();
-		String sql = " SELECT * FROM goods ORDER BY id DESC ";
+		String sql = " SELECT id, name, price, quantity, content, regist_date, ca_id FROM goods ORDER BY id DESC ";
 
 		List<GoodsDTO> goodsList = null;
 
@@ -187,9 +188,9 @@ public class GoodsDAO {
 		conn = DBConnectionManager.connectDB();
 
 		String sql = " UPDATE goods "
-				   + " SET name = ? , price= ?, quantity= ?, content= ?, "
-				   + " regist_date= SYSDATE, ca_id= ? "
-				   + " WHERE id = ? ";
+				+ " SET name = ? , price= ?, quantity= ?, content= ?, "
+				+ " regist_date= SYSDATE, ca_id= ? "
+				+ " WHERE id = ? ";
 		int result = 0;
 
 		try {
@@ -219,7 +220,7 @@ public class GoodsDAO {
 		conn = DBConnectionManager.connectDB();
 
 		String sql = " SELECT * FROM goods "
-				   + " WHERE id = ? ";
+				+ " WHERE id = ? ";
 
 		GoodsDTO gooods = null;
 
@@ -254,7 +255,7 @@ public class GoodsDAO {
 		conn = DBConnectionManager.connectDB();
 
 		String sql =  " DELETE FROM goods " 
-				   	+ " WHERE id = ? ";
+				+ " WHERE id = ? ";
 
 		int result = 0;
 
@@ -306,8 +307,8 @@ public class GoodsDAO {
 		conn = DBConnectionManager.connectDB();
 
 		String sql = " UPDATE goods "
-				   + " SET quantity = quantity - ? "
-				   + " WHERE id = ? ";
+				+ " SET quantity = quantity - ? "
+				+ " WHERE id = ? ";
 		int result = 0;
 
 		try {
@@ -327,44 +328,44 @@ public class GoodsDAO {
 
 		return result;
 	}
-	
+
 	public List<GoodsDTO> findGoodsListByName(String namein) {
-
 		conn = DBConnectionManager.connectDB();
-		String sql = " SELECT * FROM goods WHERE LOWER(name) "
-				   + " LIKE LOWER(?) ORDER BY id ";
-
+		String sql = "SELECT * FROM goods WHERE LOWER(name) LIKE LOWER(?) ESCAPE '\\'";
 		List<GoodsDTO> goodsList = null;
 
 		try {
+			
+			if (namein == null || namein.trim().isEmpty() || namein.trim().replaceAll("\\s+", "").isEmpty()) {
+				return Collections.emptyList();
+			}
+
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, "%" + namein + "%");
+			psmt.setString(1, "%" + namein.trim().replace("\\", "\\\\").replace("%", "\\%") + "%");
 			rs = psmt.executeQuery();
 
-			goodsList = new ArrayList<GoodsDTO>();
+			goodsList = new ArrayList<>();
 
-			while(rs.next()) {
+			while (rs.next()) {
 				int id = rs.getInt("id");
 				String name = rs.getString("name");
 				int price = rs.getInt("price");
 				int quantity = rs.getInt("quantity");
 				String content = rs.getString("content");
-				LocalDateTime regist_date
-				= MyConvertDateUtil.convertTimestampToLocalDateTime(rs.getTimestamp("regist_date"));
+				LocalDateTime regist_date = MyConvertDateUtil.convertTimestampToLocalDateTime(rs.getTimestamp("regist_date"));
 				int ca_id = rs.getInt("ca_id");
 
 				GoodsDTO goods = new GoodsDTO(id, name, price, quantity, content, regist_date, ca_id);
 				goodsList.add(goods);
-
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			DBConnectionManager.closeDB(conn, psmt, rs);
 		}
 
 		return goodsList;
 	}
+
 
 }

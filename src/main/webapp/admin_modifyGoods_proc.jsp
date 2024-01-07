@@ -31,14 +31,14 @@
 	if(result > 0){
 	%>
 	<script>
-		alert('수정 성공');
+		alert('수정하였습니다');
 		location.href = 'admin_goodsList.jsp';
 	</script>
 	<%
 	}else{
 	%>
 	<script>	
-		alert('수정 실패');
+		alert('수정에 실패하였습니다');
 		history.back();
 	</script>			
 	<% 	
